@@ -1,107 +1,51 @@
-schemaVersion: 1
-techId: Nutanix.PrismElement
-appliesTo:
-  targetKind: Nutanix.PrismElement
-
-defaults:
-  params:
-    port: 9440
-    verifyTls: true
-    timeoutSec: 60
-
-validation:
-  # -------------------------
-  # Offline / semantic checks
-  # -------------------------
-  required:
-    - path: targets[].endpoints.prism
-      type: string
-      minLength: 1
-      message: "Nutanix.PrismElement requires targets[].endpoints.prism (Prism Element VIP/FQDN)."
-
-  fields:
-    - path: targets[].endpoints.prism
-      type: string
-      rules:
-        - name: not_blank
-        - name: hostname_or_ip
-      message: "endpoints.prism must be a valid hostname or IP."
-
-    - path: targets[].params.port
-      type: integer
-      rules:
-        - name: range
-          min: 1
-          max: 65535
-      message: "params.port must be 1..65535 (default: 9440)."
-
-    - path: targets[].params.verifyTls
-      type: boolean
-      message: "params.verifyTls must be true/false."
-
-    - path: targets[].params.timeoutSec
-      type: integer
-      rules:
-        - name: range
-          min: 5
-          max: 600
-      message: "params.timeoutSec must be 5..600 seconds."
-
-  links:
-    - description: "collectors[].authRef must refer to a key under plan.auth"
-      fromPath: collectors[].authRef
-      toObjectPath: auth
-      mode: error
-      message: "collector authRef '{value}' must exist in plan.auth."
-
-    - description: "collectors with techId Nutanix.PrismElement should reference targets of kind Nutanix.PrismElement"
-      collectorFilter:
-        path: collectors[].techId
-        equals: Nutanix.PrismElement
-      targetKeyPath: collectors[].targetKeys[]
-      targetLookup:
-        byKeyPath: targets[].key
-      requireTargetField:
-        path: targets[].kind
-        equals: Nutanix.PrismElement
-      mode: error
-      message: "collector targetKeys must reference targets with kind Nutanix.PrismElement."
-
-  unknownFieldPolicy:
-    endpoints: warn
-    params: warn
-
-  warnings:
-    - when:
-        path: targets[].params.verifyTls
-        equals: false
-      message: "verifyTls=false is diagnostic-only. Prefer trusted certificates."
-
-authRefHints:
-  requiredFields:
-    - username
-    - password
-  notes:
-    - "authRef must resolve outside the plan (secrets are never stored in plans)."
-
-# --------------------------------
-# Online / preflight (optional run)
-# --------------------------------
-preflight:
-  - id: tcp_connect
-    description: "TCP connectivity to Prism:port"
-    inputs:
-      hostPath: targets[].endpoints.prism
-      portPath: targets[].params.port
-
-  - id: https_probe
-    description: "Prism endpoint probe (best effort)"
-    request:
-      method: GET
-      urlTemplate: "https://{prism}:{port}/"
-      successStatusCodes: [200, 302, 401, 403]
-      timeoutSecPath: targets[].params.timeoutSec
-      tls:
-        verifyPath: targets[].params.verifyTls
-    notes:
-      - "Status varies by Prism configuration; 200/302/401/403 generally indicates the endpoint is alive."
+apiVersion: lnv.asbuiltdoc/v1
+kind: PlanValidation
+metadata:
+  tech: Nutanix.PrismElement
+spec:
+  requiredPlanSteps:
+    - name: cluster
+      version: 2
+      uri: /cluster
+    - name: vms
+      version: 1
+      uri: /vms
+    - name: hosts
+      version: 2
+      uri: /hosts
+    - name: networks
+      version: 2
+      uri: /networks
+    - name: storage_containers
+      version: 2
+      uri: /storage_containers
+    - name: storage_pools
+      version: 1
+      uri: /storage_pools
+    - name: disks
+      version: 2
+      uri: /disks
+    - name: volume_groups
+      version: 2
+      uri: /volume_groups
+    - name: protection_domains
+      version: 2
+      uri: /protection_domains
+    - name: remote_sites
+      version: 1
+      uri: /remote_sites
+    - name: images
+      version: 2
+      uri: /images
+    - name: health_checks
+      version: 2
+      uri: /health_checks
+    - name: snmp
+      version: 2
+      uri: /snmp
+    - name: authconfig
+      version: 2
+      uri: /authconfig
+    - name: license
+      version: 1
+      uri: /license/
