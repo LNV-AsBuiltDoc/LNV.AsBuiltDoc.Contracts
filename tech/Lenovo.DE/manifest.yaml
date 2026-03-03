@@ -5,7 +5,6 @@ collector: LNV.AsBuiltDoc.Lenovo.DE
 bundleSchema: 1
 
 domains:
-
   - name: System
     dataset: systems.json
     objects:
@@ -19,6 +18,38 @@ domains:
     objects:
       - key: Controllers
         sdtTag: LNV.Lenovo.DE.Controllers.Table
+        placement: Main
+        minInfoLevel: 1
+
+  - name: ManagementInterfaces
+    dataset: management-interfaces.json
+    objects:
+      - key: ManagementInterfaces
+        sdtTag: LNV.Lenovo.DE.Network.ManagementInterfaces.Table
+        placement: Main
+        minInfoLevel: 1
+
+  - name: Transport
+    dataset: transport.json
+    objects:
+      - key: ActiveTransport
+        sdtTag: LNV.Lenovo.DE.Network.Transport.Table
+        placement: Main
+        minInfoLevel: 1
+
+  - name: SystemDns
+    dataset: system-dns.json
+    objects:
+      - key: DNS
+        sdtTag: LNV.Lenovo.DE.Network.DNS.Table
+        placement: Main
+        minInfoLevel: 1
+
+  - name: SystemTime
+    dataset: system-time.json
+    objects:
+      - key: NTP
+        sdtTag: LNV.Lenovo.DE.Network.Time.Table
         placement: Main
         minInfoLevel: 1
 
@@ -63,14 +94,6 @@ domains:
     objects:
       - key: Volumes
         sdtTag: LNV.Lenovo.DE.Volumes.Table
-        placement: Main
-        minInfoLevel: 1
-
-  - name: Network
-    dataset: system-network.json
-    objects:
-      - key: Management
-        sdtTag: LNV.Lenovo.DE.Network.Management
         placement: Main
         minInfoLevel: 1
 
