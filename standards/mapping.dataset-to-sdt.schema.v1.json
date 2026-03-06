@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lnv.asbuiltdoc/contracts/standards/mapping.dataset-to-sdt.schema.v1.json",
+  "title": "Dataset to SDT Mapping Contract (v1)",
+  "description": "Canonical mapping from collected datasets to SDT tags used by assembler modules.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "kind", "techId", "compatibility", "mappings"],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "kind": {
+      "type": "string",
+      "const": "dataset-to-sdt-mapping"
+    },
+    "techId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contracts", "core"],
+      "properties": {
+        "contracts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["version"],
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "core": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["strictContracts"],
+          "properties": {
+            "strictContracts": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/mappingEntry"
+      }
+    }
+  },
+  "$defs": {
+    "mappingEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "dataset", "sdtTag", "required"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dataset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sdtTag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

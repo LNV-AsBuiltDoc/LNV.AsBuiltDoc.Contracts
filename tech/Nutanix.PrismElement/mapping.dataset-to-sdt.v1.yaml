@@ -1,0 +1,96 @@
+schemaVersion: 1
+kind: dataset-to-sdt-mapping
+techId: Nutanix.PrismElement
+compatibility:
+  contracts:
+    version: 1.0.5
+  core:
+    strictContracts: true
+
+mappings:
+  - id: cluster-summary
+    dataset: cluster
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Summary
+    required: true
+  - id: cluster-config
+    dataset: cluster
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.ClusterConfig
+    required: true
+  - id: cluster-fault-tolerance
+    dataset: cluster
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.FaultTolerance
+    required: true
+
+  - id: license-table
+    dataset: license
+    sdtTag: LNV.Nutanix.PrismElement.Licensing[<ClusterKey>].Tables.Licenses
+    required: true
+
+  - id: hosts-table
+    dataset: hosts
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.Hosts
+    required: true
+
+  - id: networks-table
+    dataset: networks
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.Networks
+    required: true
+
+  - id: storage-containers-table
+    dataset: storage_containers
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.StorageContainers
+    required: true
+  - id: storage-pools-table
+    dataset: storage_pools
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.StoragePools
+    required: true
+
+  - id: vms-table
+    dataset: vms
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.VMs
+    required: true
+
+  - id: protection-domains-table
+    dataset: protection_domains
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.ProtectionDomains
+    required: true
+  - id: remote-sites-table
+    dataset: remote_sites
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.RemoteSites
+    required: true
+
+  - id: volume-groups-appendix
+    dataset: volume_groups
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.VolumeGroups
+    required: false
+  - id: disks-appendix
+    dataset: disks
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.Disks
+    required: false
+  - id: health-checks-appendix
+    dataset: health_checks
+    sdtTag: LNV.Nutanix.PrismElement.Health[<ClusterKey>].Tables.HealthChecks
+    required: false
+  - id: snmp-config-appendix
+    dataset: snmp
+    sdtTag: LNV.Nutanix.PrismElement.Snmp[<ClusterKey>].Tables.SnmpConfig
+    required: false
+  - id: auth-config-appendix
+    dataset: authconfig
+    sdtTag: LNV.Nutanix.PrismElement.Auth[<ClusterKey>].Tables.AuthConfig
+    required: false
+
+  - id: cluster-evidence
+    dataset: cluster
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Evidence.Placeholder
+    required: false
+  - id: host-evidence
+    dataset: hosts
+    sdtTag: LNV.Nutanix.PrismElement.Host[<HostKey>].Evidence.Placeholder
+    required: false
+
+  - id: images-dataset-reserved
+    dataset: images
+    sdtTag: LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Evidence.Images
+    required: false
+    notes: No required SDT in v1 inventory; reserved for evidence/rendering extensions.

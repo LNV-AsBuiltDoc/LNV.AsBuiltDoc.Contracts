@@ -219,3 +219,27 @@ After first real bundle + assembly:
 - Add additional SDTs as customer requirements emerge (keep backwards compatible)
 
 ---
+
+## 10. Example Rendering Notes (for mapping.dataset-to-sdt.v1)
+
+- Cluster narrative should render `Cluster[<ClusterKey>].Summary` before any cluster tables.
+- Main-body order should be: ClusterConfig, FaultTolerance, Hosts, Networks, StorageContainers, StoragePools, VMs, ProtectionDomains, RemoteSites, Licenses.
+- If a mapped dataset is present but empty, render the SDT block with a deterministic "No data returned" row instead of removing the section.
+- If an optional (appendix) mapping is absent (`volume_groups`, `disks`, `health_checks`, `snmp`, `authconfig`, `images`), keep section heading and render "Not collected".
+- `<ClusterKey>` should use cluster UUID where available; `<HostKey>` should use host UUID where available.
+
+### 10.1 Required tag coverage checklist
+
+The following SDTs are required coverage for strict contracts mode and must remain mapped in `mapping.dataset-to-sdt.v1.yaml`:
+
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Summary`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.ClusterConfig`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.FaultTolerance`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.Hosts`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.Networks`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.StorageContainers`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.StoragePools`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.VMs`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.ProtectionDomains`
+- `LNV.Nutanix.PrismElement.Cluster[<ClusterKey>].Tables.RemoteSites`
+- `LNV.Nutanix.PrismElement.Licensing[<ClusterKey>].Tables.Licenses`

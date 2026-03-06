@@ -11,6 +11,8 @@ spec:
     dataset: lnv.collector.dataset.v1
   planValidation: plan_validation.yaml
   datasetSchemaPath: dataset
+  mapping:
+    datasetToSdt: mapping.dataset-to-sdt.v1.yaml
   apiSupport:
     stable: v2
     fallback:
