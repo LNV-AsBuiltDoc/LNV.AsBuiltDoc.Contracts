@@ -1,0 +1,75 @@
+metadata:
+  techId: Lenovo.DE
+  artifactType: dataset-to-sdt-mapping
+  artifactVersion: 1
+  description: Canonical dataset-to-SDT mapping for Lenovo.DE collector outputs.
+
+contracts:
+  compatibility:
+    contracts.version: 1.0.5
+
+mappings:
+  - mappingId: lenovo-de-systems-summary
+    datasetKey: systems
+    sdtTag: LNV.Lenovo.DE.System.Summary
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-system-controllers-table
+    datasetKey: system-controllers
+    sdtTag: LNV.Lenovo.DE.Controllers.Table
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-management-interfaces-table
+    datasetKey: management-interfaces
+    sdtTag: LNV.Lenovo.DE.Network.ManagementInterfaces.Table
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-transport-table
+    datasetKey: transport
+    sdtTag: LNV.Lenovo.DE.Network.Transport.Table
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-system-dns-table
+    datasetKey: system-dns
+    sdtTag: LNV.Lenovo.DE.Network.DNS.Table
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-system-time-table
+    datasetKey: system-time
+    sdtTag: LNV.Lenovo.DE.Network.Time.Table
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-trays-table
+    datasetKey: trays
+    sdtTag: LNV.Lenovo.DE.Trays.Table
+    requiredCoverage: false
+
+  - mappingId: lenovo-de-host-ports-iscsi-table
+    datasetKey: host-ports
+    sdtTag: LNV.Lenovo.DE.HostPorts.iSCSI.Table
+    requiredCoverage: false
+
+  - mappingId: lenovo-de-host-ports-fc-table
+    datasetKey: host-ports
+    sdtTag: LNV.Lenovo.DE.HostPorts.FC.Table
+    requiredCoverage: false
+
+  - mappingId: lenovo-de-drives-table
+    datasetKey: drives
+    sdtTag: LNV.Lenovo.DE.Drives.Table
+    requiredCoverage: false
+
+  - mappingId: lenovo-de-storage-containers-table
+    datasetKey: storage-containers
+    sdtTag: LNV.Lenovo.DE.Containers.Table
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-volumes-table
+    datasetKey: volumes
+    sdtTag: LNV.Lenovo.DE.Volumes.Table
+    requiredCoverage: true
+
+  - mappingId: lenovo-de-system-asup-table
+    datasetKey: system-asup
+    sdtTag: LNV.Lenovo.DE.ASUP.Table
+    requiredCoverage: false
