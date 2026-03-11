@@ -1,25 +1,95 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "tech/Lenovo.DE/dataset/host-groups.schema.json",
-  "title": "Lenovo.DE host-groups dataset item",
+  "$id": "https://lnv-asbuiltdoc.github.io/LNV.AsBuiltDoc.Contracts/tech/Lenovo.DE/dataset/host-groups.schema.json",
+  "title": "Lenovo.DE host groups dataset schema (v2)",
   "type": "object",
-  "additionalProperties": true,
-  "required": ["id", "systemId"],
+  "required": [
+    "schema_version",
+    "collector",
+    "source",
+    "dataset",
+    "item_count",
+    "items"
+  ],
   "properties": {
-    "id": {
-      "type": "string",
-      "description": "Canonical host-group identifier; primary key used by mapping joins."
+    "schema_version": {
+      "const": "lnv.collector.dataset.v1"
     },
-    "ref": {
-      "type": "string",
-      "description": "Source-native host-group reference. Keep for lineage; may match id."
+    "collector": {
+      "type": "object",
+      "required": [
+        "vendor",
+        "name",
+        "version"
+      ],
+      "properties": {
+        "vendor": {
+          "const": "LNV.AsBuiltDoc"
+        },
+        "name": {
+          "const": "LNV.AsBuiltDoc.Lenovo.DE"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
     },
-    "systemId": {
-      "type": "string",
-      "description": "Storage-system join key for per-system filtering and assembler partitioning."
+    "source": {
+      "type": "object"
     },
-    "name": { "type": "string" },
-    "clusterRef": { "type": "string" },
-    "hostGroupRef": { "type": "string" }
-  }
+    "dataset": {
+      "const": "host-groups"
+    },
+    "collected_at_utc": {
+      "type": "string"
+    },
+    "item_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "patternProperties": {
+          "^x-": {}
+        },
+        "required": [
+          "systemId",
+          "id"
+        ],
+        "properties": {
+          "systemId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "clusterRef": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
 }

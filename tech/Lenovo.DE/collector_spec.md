@@ -1,4 +1,4 @@
-# Lenovo.DE Collector Spec (Direct-v1)
+# Lenovo.DE Collector Spec (Direct-V1)
 
 ## Overview
 This technology defines collection for **Lenovo DE-series** storage arrays using
@@ -66,13 +66,17 @@ The collector SHOULD collect and emit both **raw** and **normalized** datasets.
   - Volume Groups (traditional RAID groups)
   - Disk Pools (DDP)
 - `volumes`: volumes/LUNs and their container references (VG or disk pool)
+- `host-types`: host type definitions used for host object enrichment
+- `hosts`: host inventory and host/cluster affiliations
+- `host-groups`: host-group inventory used for access mapping
+- `volume-mappings`: volume-to-host/host-group LUN mapping relationships
 
 ### Important modeling note: VG vs DDP
 SANtricity may represent capacity containers as either:
 - Volume Groups (RAID level like raid6), or
 - Disk Pools (DDP), where RAID semantics differ.
 
-Direct-v1 normalizes both under `storage-containers` with:
+Direct-V1 normalizes both under `storage-containers` with:
 - `containerType` (e.g., `VolumeGroup` | `DiskPool`)
 - `containerRef` (stable ID)
 - `raidLevel` (when present)
@@ -84,7 +88,7 @@ Volumes should include:
 
 ## Output Contract (pre-Core wiring)
 During early development, collectors may emit JSON/CSV diagnostics.
-When wired into `LNV.AsBuiltDoc.Core`, collectors must emit a Direct-v1 bundle:
+When wired into `LNV.AsBuiltDoc.Core`, collectors must emit a Direct-V1 bundle:
 - `manifest.json` (Bundle Manifest v1)
 - `config_used.json`
 - `datasets/*` (normalized + evidence/raw as required)
@@ -98,3 +102,5 @@ Examples:
 - TLS: some arrays use self-signed certs; `skipTlsVerify` is diagnostic-only.
 - Management endpoint validation: probe `/devmgr/v2/storage-systems` (401/403 acceptable pre-auth).
 - Multi-controller: endpoint may be A or B; future enhancement may try both.
+## Release Notes
+- Direct-V1 contract coverage now includes `host-types`, `hosts`, `host-groups`, and `volume-mappings` datasets emitted by the collector.

@@ -24,4 +24,8 @@ spec:
     - drives
     - storage-containers
     - volumes
+    - host-types
+    - hosts
+    - host-groups
+    - volume-mappings
     - system-asup

@@ -60,6 +60,24 @@ mappings:
   sdtTag: LNV.Lenovo.DE.Volumes.Table
   required: true
   notes: placement=Main; minInfoLevel=1; objectKey=Volumes
+- dataset: host-types
+  target:
+    kind: dataset-only
+    path: hosts.hostTypeRef join enrichment
+  required: false
+  notes: noSdtTag=true; usedFor=host enrichment only in Direct-V1
+- dataset: hosts
+  sdtTag: LNV.Lenovo.DE.Hosts.Table
+  required: false
+  notes: placement=Main; minInfoLevel=2; objectKey=Hosts
+- dataset: host-groups
+  sdtTag: LNV.Lenovo.DE.HostGroups.Table
+  required: false
+  notes: placement=Main; minInfoLevel=2; objectKey=HostGroups
+- dataset: volume-mappings
+  sdtTag: LNV.Lenovo.DE.VolumeMappings.Table
+  required: false
+  notes: placement=Main; minInfoLevel=2; objectKey=VolumeMappings
 - dataset: system-asup
   sdtTag: LNV.Lenovo.DE.ASUP.Table
   required: true

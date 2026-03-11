@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lnv-asbuiltdoc.github.io/LNV.AsBuiltDoc.Contracts/tech/Lenovo.DE/dataset/volume-mappings.schema.json",
-  "title": "Lenovo.DE volume mappings dataset schema (v2)",
+  "$id": "https://lnv-asbuiltdoc.github.io/LNV.AsBuiltDoc.Contracts/tech/Lenovo.DE/dataset/host-types.schema.json",
+  "title": "Lenovo.DE host types dataset schema (v1)",
   "type": "object",
   "required": [
     "schema_version",
@@ -39,7 +39,7 @@
       "type": "object"
     },
     "dataset": {
-      "const": "volume-mappings"
+      "const": "host-types"
     },
     "collected_at_utc": {
       "type": "string"
@@ -58,58 +58,35 @@
         },
         "required": [
           "systemId",
-          "volumeRef",
-          "mappedToRef"
+          "id"
         ],
         "properties": {
           "systemId": {
             "type": "string",
             "minLength": 1
           },
-          "volumeRef": {
+          "id": {
             "type": "string",
             "minLength": 1
           },
-          "mappedToRef": {
-            "type": "string",
-            "minLength": 1
-          },
-          "mappedToType": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "enum": [
-              "host",
-              "hostGroup",
-              "cluster",
-              null
-            ]
-          },
-          "mappingRef": {
+          "ref": {
             "type": [
               "string",
               "null"
             ]
           },
-          "volumeId": {
+          "name": {
             "type": [
               "string",
               "null"
             ]
           },
-          "volumeName": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "lun": {
+          "hostTypeIndex": {
             "type": [
               "integer",
-              "string",
               "null"
-            ]
+            ],
+            "minimum": 0
           }
         }
       }
