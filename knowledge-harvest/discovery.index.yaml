@@ -1,0 +1,62 @@
+repo: LNV.AsBuiltDoc.Contracts
+discovered:
+- path: standards/architecture.direct-v1.collector-contracts.md
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/assembler/assembler.error-model.v1.md
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/assembler/assembler.input.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/assembler/assembler.render-report.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/assembler/assembler.runtime.contract.v1.md
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/assembler/assembler.transform-semantics.v1.md
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/bundle.manifest.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/coverage.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/finding.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/mapping.dataset-to-sdt.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/objectIndex.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern
+- path: standards/solution.plan.schema.v1.json
+  class: schema
+  confidence: 0.95
+  match_reason: '**/standards/**'
+  rationale: schema filename/path pattern

@@ -1,0 +1,181 @@
+usage_map:
+- concept_id: bundle.manifest.v1.schemaVersion
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.bundleId
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.createdUtc
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.completedUtc
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.createdBy
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.environment
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.tech
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.targets
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.dependencies
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.files
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.results
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
+- concept_id: bundle.manifest.v1.integrity
+  readers:
+  - README.md
+  - RELEASE_CHECKLIST.md
+  validators:
+  - standards/bundle.manifest.schema.v1.json
+  transformers:
+  - standards/assembler/assembler.transform-semantics.v1.md
+  renderers_or_outputs:
+  - standards/assembler/assembler.render-report.schema.v1.json
+  tests_or_fixtures:
+  - examples/plans/Lenovo.DE.minimal.solution.plan.json
+  runtime_assumptions:
+  - schema versions are compatibility boundaries
+  - required fields are enforced by downstream contract validators
