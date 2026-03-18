@@ -53,7 +53,7 @@ jobs:
           ZIP="asbuiltdoc-contracts-v${VER}.zip"
           SHA="${ZIP}.sha256"
           rm -f "$ZIP" "$SHA"
-          zip -r "$ZIP" standards tech
+          git archive --format=zip --output "$ZIP" HEAD standards tech
           sha256sum "$ZIP" | tee "$SHA"
           {
             echo "ver=$VER"
