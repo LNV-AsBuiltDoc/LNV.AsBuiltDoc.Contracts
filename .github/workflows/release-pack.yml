@@ -39,21 +39,33 @@ jobs:
             exit 1
           fi
 
+      - name: Clean stale release artifacts
+        shell: bash
+        run: |
+          rm -f asbuiltdoc-contracts-*.zip asbuiltdoc-contracts-*.zip.sha256
+
       - name: Build pack
+        id: build_pack
         shell: bash
         run: |
           TAG="${GITHUB_REF_NAME}"          # e.g. v1.0.1
           VER="${TAG#v}"                    # e.g. 1.0.1
           ZIP="asbuiltdoc-contracts-v${VER}.zip"
-          rm -f "$ZIP"
+          SHA="${ZIP}.sha256"
+          rm -f "$ZIP" "$SHA"
           zip -r "$ZIP" standards tech
-          sha256sum "$ZIP" | tee "${ZIP}.sha256"
+          sha256sum "$ZIP" | tee "$SHA"
+          {
+            echo "ver=$VER"
+            echo "zip=$ZIP"
+            echo "sha=$SHA"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release + upload assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            asbuiltdoc-contracts-*.zip
-            asbuiltdoc-contracts-*.zip.sha256
+            ${{ steps.build_pack.outputs.zip }}
+            ${{ steps.build_pack.outputs.sha }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
