@@ -45,8 +45,13 @@ Contents:
 Reference command (run from repo root):
 - `git archive --format=zip --output asbuiltdoc-contracts-vX.Y.Z.zip HEAD standards tech`
 
+Packaging rules:
+- Package tracked `HEAD` content only from `standards/` and `tech/`.
+- Untracked or locally generated files are intentionally excluded from the release zip.
+
 Validation command:
 - `unzip -l asbuiltdoc-contracts-vX.Y.Z.zip`
+- Confirm the archive lists `standards/` and `tech/` entries from the tagged commit, with no unexpected workspace-only files.
 
 ## 3. Smoke test the pack (required)
 
