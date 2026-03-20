@@ -21,11 +21,15 @@ spec:
     - system-time
     - trays
     - host-ports
-    - drives
-    - storage-containers
-    - volumes
     - host-types
     - hosts
     - host-groups
+    - hosts-to-host-groups
+    - drives
+    - storage-containers
+    - volumes
+    - host-groups-to-volumes
+    - hosts-to-volumes
     - volume-mappings
     - system-asup
+    - capabilities-normalized

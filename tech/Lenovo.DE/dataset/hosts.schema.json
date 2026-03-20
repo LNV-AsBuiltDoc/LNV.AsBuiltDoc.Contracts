@@ -1,107 +1,25 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lnv-asbuiltdoc.github.io/LNV.AsBuiltDoc.Contracts/tech/Lenovo.DE/dataset/hosts.schema.json",
-  "title": "Lenovo.DE hosts dataset schema (v2)",
+  "$id": "tech/Lenovo.DE/dataset/hosts.schema.json",
+  "title": "Lenovo.DE hosts dataset item",
   "type": "object",
-  "required": [
-    "schema_version",
-    "collector",
-    "source",
-    "dataset",
-    "item_count",
-    "items"
-  ],
+  "additionalProperties": true,
+  "required": ["id", "systemId"],
   "properties": {
-    "schema_version": {
-      "const": "lnv.collector.dataset.v1"
+    "id": {
+      "type": "string",
+      "description": "Canonical host identifier; primary key used by downstream joins."
     },
-    "collector": {
-      "type": "object",
-      "required": [
-        "vendor",
-        "name",
-        "version"
-      ],
-      "properties": {
-        "vendor": {
-          "const": "LNV.AsBuiltDoc"
-        },
-        "name": {
-          "const": "LNV.AsBuiltDoc.Lenovo.DE"
-        },
-        "version": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": true
+    "ref": {
+      "type": "string",
+      "description": "Source-native host reference. Keep for lineage; may match id."
     },
-    "source": {
-      "type": "object"
+    "systemId": {
+      "type": "string",
+      "description": "Storage-system join key for per-system filtering and assembler partitioning."
     },
-    "dataset": {
-      "const": "hosts"
-    },
-    "collected_at_utc": {
-      "type": "string"
-    },
-    "item_count": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "items": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "patternProperties": {
-          "^x-": {}
-        },
-        "required": [
-          "systemId",
-          "id"
-        ],
-        "properties": {
-          "systemId": {
-            "type": "string",
-            "minLength": 1
-          },
-          "id": {
-            "type": "string",
-            "minLength": 1
-          },
-          "ref": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "name": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "clusterRef": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "hostGroupRef": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "hostTypeRef": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        }
-      }
-    }
-  },
-  "additionalProperties": true
+    "name": { "type": "string" },
+    "clusterRef": { "type": "string" },
+    "hostGroupRef": { "type": "string" }
+  }
 }

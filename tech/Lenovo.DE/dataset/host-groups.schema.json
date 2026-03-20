@@ -1,95 +1,51 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lnv-asbuiltdoc.github.io/LNV.AsBuiltDoc.Contracts/tech/Lenovo.DE/dataset/host-groups.schema.json",
-  "title": "Lenovo.DE host groups dataset schema (v2)",
+  "$id": "tech/Lenovo.DE/dataset/host-groups.schema.json",
+  "title": "Lenovo.DE host-groups dataset item",
+  "description": "Normalized Lenovo.DE host-group identity plus collector-materialized membership summary. Membership detail is emitted directly on each row via derived arrays such as memberRefs and memberNames.",
   "type": "object",
+  "additionalProperties": true,
   "required": [
-    "schema_version",
-    "collector",
-    "source",
-    "dataset",
-    "item_count",
-    "items"
+    "id",
+    "systemId"
   ],
   "properties": {
-    "schema_version": {
-      "const": "lnv.collector.dataset.v1"
+    "id": {
+      "type": "string",
+      "description": "Canonical host-group identifier; primary key used by mapping joins."
     },
-    "collector": {
-      "type": "object",
-      "required": [
-        "vendor",
-        "name",
-        "version"
-      ],
-      "properties": {
-        "vendor": {
-          "const": "LNV.AsBuiltDoc"
-        },
-        "name": {
-          "const": "LNV.AsBuiltDoc.Lenovo.DE"
-        },
-        "version": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": true
+    "ref": {
+      "type": "string",
+      "description": "Source-native host-group reference. Keep for lineage; may match id."
     },
-    "source": {
-      "type": "object"
+    "systemId": {
+      "type": "string",
+      "description": "Storage-system join key for per-system filtering and assembler partitioning."
     },
-    "dataset": {
-      "const": "host-groups"
-    },
-    "collected_at_utc": {
+    "name": {
       "type": "string"
     },
-    "item_count": {
-      "type": "integer",
-      "minimum": 0
+    "clusterRef": {
+      "type": "string",
+      "description": "Canonical Lenovo DE host-group membership key. Membership is derived primarily by joining hosts.clusterRef to host-groups.clusterRef or id."
     },
-    "items": {
+    "hostGroupRef": {
+      "type": "string",
+      "description": "Legacy/compatibility host-group reference retained for lineage and older payloads. Use only as a fallback when hosts.clusterRef is unavailable."
+    },
+    "memberRefs": {
       "type": "array",
+      "description": "Derived summary of normalized host member identifiers. Collectors should build this primarily from hosts.clusterRef -> host-groups.clusterRef/id joins, using hosts.hostGroupRef only as a fallback for older payloads.",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "patternProperties": {
-          "^x-": {}
-        },
-        "required": [
-          "systemId",
-          "id"
-        ],
-        "properties": {
-          "systemId": {
-            "type": "string",
-            "minLength": 1
-          },
-          "id": {
-            "type": "string",
-            "minLength": 1
-          },
-          "ref": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "name": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "clusterRef": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        }
+        "type": "string"
+      }
+    },
+    "memberNames": {
+      "type": "array",
+      "description": "Derived summary of normalized host member names. This is populated from the authoritative hosts.clusterRef -> host-groups.clusterRef/id relationship, with hostGroupRef retained only as a fallback for older payloads.",
+      "items": {
+        "type": "string"
       }
     }
-  },
-  "additionalProperties": true
+  }
 }

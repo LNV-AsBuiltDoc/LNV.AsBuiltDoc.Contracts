@@ -1,4 +1,4 @@
-# Lenovo.DE Collector Spec (Direct-V1)
+# Lenovo.DE Collector Spec (Direct-v1)
 
 ## Overview
 This technology defines collection for **Lenovo DE-series** storage arrays using
@@ -61,22 +61,23 @@ The collector SHOULD collect and emit both **raw** and **normalized** datasets.
 
 ### Key datasets (logical)
 - `systems`: array inventory of storage systems visible to the controller
+- `hosts`: normalized host identities available on the array
+- `host-types`: normalized host-type lookup rows collected to enrich host records
+- `host-groups`: normalized host groups / clusters available on the array; each row represents group identity plus a collector-materialized membership summary. Normalized rows include derived arrays such as `memberRefs` and `memberNames`, built primarily from `hosts.clusterRef -> host-groups.clusterRef`/`id`, with `hostGroupRef` retained only as a compatibility fallback for older payloads
 - `drives`: physical drives inventory
 - `storage-containers`: normalized union of:
   - Volume Groups (traditional RAID groups)
   - Disk Pools (DDP)
 - `volumes`: volumes/LUNs and their container references (VG or disk pool)
-- `host-types`: host type definitions used for host object enrichment
-- `hosts`: host inventory and host/cluster affiliations
-- `host-groups`: host-group inventory used for access mapping
-- `volume-mappings`: volume-to-host/host-group LUN mapping relationships
+- `volume-mappings`: normalized host/host-group to volume/LUN relationship rows derived from volume mapping arrays
+- `capabilities-normalized`: curated, document-facing capability dataset derived from feature state + bundle entitlement metadata for SDT rendering and summary/limits projections
 
 ### Important modeling note: VG vs DDP
 SANtricity may represent capacity containers as either:
 - Volume Groups (RAID level like raid6), or
 - Disk Pools (DDP), where RAID semantics differ.
 
-Direct-V1 normalizes both under `storage-containers` with:
+Direct-v1 normalizes both under `storage-containers` with:
 - `containerType` (e.g., `VolumeGroup` | `DiskPool`)
 - `containerRef` (stable ID)
 - `raidLevel` (when present)
@@ -86,9 +87,21 @@ Volumes should include:
 - original refs (`volumeGroupRef`, `diskPoolRef`) if present
 - normalized `containerRef` (first of those that exists)
 
+Volume mappings should include:
+- `volumeRef` / `volumeId` and `volumeName`
+- `mappedToRef` resolving to `hosts.id` or `host-groups.id`
+- `mappedToType` normalized to `host` or `hostGroup`
+- `lun` and `mappingRef` when present
+
+### Host/group/mapping ownership note
+- `hosts` owns host identity.
+- `host-groups` owns group identity plus membership summary.
+- `volume-mappings` remains the low-level host-access fact set and backs `Tables.VolumeMappings` as the evidence/fact table.
+- `hosts-to-host-groups`, `host-groups-to-volumes`, and `hosts-to-volumes` are formal collector-emitted relationship datasets intended for report-facing SDTs, with the three relationship datasets serving as the reader-facing section tables.
+
 ## Output Contract (pre-Core wiring)
 During early development, collectors may emit JSON/CSV diagnostics.
-When wired into `LNV.AsBuiltDoc.Core`, collectors must emit a Direct-V1 bundle:
+When wired into `LNV.AsBuiltDoc.Core`, collectors must emit a Direct-v1 bundle:
 - `manifest.json` (Bundle Manifest v1)
 - `config_used.json`
 - `datasets/*` (normalized + evidence/raw as required)
@@ -96,11 +109,23 @@ When wired into `LNV.AsBuiltDoc.Core`, collectors must emit a Direct-V1 bundle:
 ## Evidence/Raw Guidance
 Raw payloads SHOULD be emitted for troubleshooting and auditability, but treated as evidence.
 Examples:
-- `systems.raw.json`, `drives.raw.json`, `storage-containers.raw.json`, `volumes.raw.json`
+- `systems.raw.json`, `drives.raw.json`, `storage-containers.raw.json`, `volumes.raw.json`, `capabilities.raw.json`
+
+## Capability modeling note
+The Lenovo DE capability collector intentionally preserves raw capability data and emits a curated document-facing layer:
+
+- `capabilities.raw.json`: source-preserving capability payload captured from `/v2/storage-systems/{systemId}/capabilities`
+- `capabilities-normalized`: curated logical-feature abstraction for rendering
+
+The collector may derive feature-state and bundle entitlement rows in-memory while building `capabilities-normalized`, but those intermediate shapes are not SDT render targets.
+Renderers SHOULD prefer `capabilities-normalized` for document content and treat `capabilities.raw.json` as the reference evidence artifact.
+
+Suggested SDT render targets derived from `capabilities-normalized`:
+- `LNV.Lenovo.DE.System[<SystemId>].Tables.CapabilitiesSummary`
+- `LNV.Lenovo.DE.System[<SystemId>].Tables.CapabilitiesKeyFeatures`
+- `LNV.Lenovo.DE.System[<SystemId>].Tables.CapabilitiesLimits`
 
 ## Known Constraints / Operational Notes
 - TLS: some arrays use self-signed certs; `skipTlsVerify` is diagnostic-only.
 - Management endpoint validation: probe `/devmgr/v2/storage-systems` (401/403 acceptable pre-auth).
 - Multi-controller: endpoint may be A or B; future enhancement may try both.
-## Release Notes
-- Direct-V1 contract coverage now includes `host-types`, `hosts`, `host-groups`, and `volume-mappings` datasets emitted by the collector.
