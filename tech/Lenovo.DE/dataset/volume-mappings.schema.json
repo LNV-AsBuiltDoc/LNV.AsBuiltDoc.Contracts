@@ -1,119 +1,31 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lnv-asbuiltdoc.github.io/LNV.AsBuiltDoc.Contracts/tech/Lenovo.DE/dataset/volume-mappings.schema.json",
-  "title": "Lenovo.DE volume mappings dataset schema (v2)",
+  "$id": "tech/Lenovo.DE/dataset/volume-mappings.schema.json",
+  "title": "Lenovo.DE volume-mappings dataset item",
   "type": "object",
-  "required": [
-    "schema_version",
-    "collector",
-    "source",
-    "dataset",
-    "item_count",
-    "items"
-  ],
+  "additionalProperties": true,
+  "required": ["systemId", "volumeRef", "mappedToRef"],
   "properties": {
-    "schema_version": {
-      "const": "lnv.collector.dataset.v1"
+    "systemId": {
+      "type": "string",
+      "description": "Storage-system join key for per-system filtering and assembler partitioning."
     },
-    "collector": {
-      "type": "object",
-      "required": [
-        "vendor",
-        "name",
-        "version"
-      ],
-      "properties": {
-        "vendor": {
-          "const": "LNV.AsBuiltDoc"
-        },
-        "name": {
-          "const": "LNV.AsBuiltDoc.Lenovo.DE"
-        },
-        "version": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": true
+    "volumeRef": {
+      "type": "string",
+      "description": "Volume identifier from volumes dataset (id/volumeRef)."
     },
-    "source": {
-      "type": "object"
+    "mappedToRef": {
+      "type": "string",
+      "description": "Join target reference to resolve against hosts.id and/or host-groups.id."
     },
-    "dataset": {
-      "const": "volume-mappings"
+    "mappedToType": {
+      "type": "string",
+      "description": "Target type normalized to host or hostGroup (cluster is normalized to hostGroup).",
+      "enum": ["host", "hostGroup", "cluster"]
     },
-    "collected_at_utc": {
-      "type": "string"
-    },
-    "item_count": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "items": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "patternProperties": {
-          "^x-": {}
-        },
-        "required": [
-          "systemId",
-          "volumeRef",
-          "mappedToRef"
-        ],
-        "properties": {
-          "systemId": {
-            "type": "string",
-            "minLength": 1
-          },
-          "volumeRef": {
-            "type": "string",
-            "minLength": 1
-          },
-          "mappedToRef": {
-            "type": "string",
-            "minLength": 1
-          },
-          "mappedToType": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "enum": [
-              "host",
-              "hostGroup",
-              "cluster",
-              null
-            ]
-          },
-          "mappingRef": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "volumeId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "volumeName": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "lun": {
-            "type": [
-              "integer",
-              "string",
-              "null"
-            ]
-          }
-        }
-      }
-    }
-  },
-  "additionalProperties": true
+    "mappingRef": { "type": "string" },
+    "volumeId": { "type": "string" },
+    "volumeName": { "type": "string" },
+    "lun": { "type": ["integer", "string", "null"] }
+  }
 }
