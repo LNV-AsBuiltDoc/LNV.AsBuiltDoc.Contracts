@@ -3,6 +3,11 @@
   "schemaVersion": 1,
   "techId": "Lenovo.DE",
   "displayName": "Lenovo DE assembler projection definitions",
+  "aliases": {
+    "LNV.Lenovo.DE.Drive[DriveID].Tables.Inventory": "LNV.Lenovo.DE.System[ArrayName].Tables.Drives",
+    "LNV.Lenovo.DE.Pool[PoolName].Tables.Inventory": "LNV.Lenovo.DE.System[ArrayName].Tables.StorageContainers",
+    "LNV.Lenovo.DE.Volume[VolumeName].Tables.Inventory": "LNV.Lenovo.DE.System[ArrayName].Tables.Volumes"
+  },
   "projections": {
     "LNV.Lenovo.DE.System[ArrayName].Tables.Drives": {
       "columns": [
@@ -36,6 +41,18 @@
           "name": "SerialNumber",
           "source": "serialNumber"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "formatProfiles": [
+        "lenovo-de-table-default"
+      ],
+      "identityKeys": [
+        "slot"
+      ],
+      "rowOrder": [
+        "slot"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.StorageContainers": {
@@ -79,6 +96,18 @@
           "name": "Status",
           "source": "status"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "formatProfiles": [
+        "lenovo-de-table-default"
+      ],
+      "identityKeys": [
+        "name"
+      ],
+      "rowOrder": [
+        "name"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.Volumes": {
@@ -104,6 +133,18 @@
           "name": "Container",
           "source": "containerName"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "formatProfiles": [
+        "lenovo-de-table-default"
+      ],
+      "identityKeys": [
+        "name"
+      ],
+      "rowOrder": [
+        "name"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.Controllers": {
@@ -132,6 +173,15 @@
           "name": "SerialNumber",
           "source": "serialNumber"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "controllerLabel"
+      ],
+      "rowOrder": [
+        "controllerLabel"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.ManagementInterfaces": {
@@ -164,6 +214,17 @@
           "name": "Mask",
           "source": "ipv4SubnetMask"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "controllerLabel",
+        "portLabel"
+      ],
+      "rowOrder": [
+        "controllerLabel",
+        "portLabel"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.Transport": {
@@ -180,6 +241,15 @@
           "name": "IscsiIqn",
           "source": "iscsiIqn"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "systemId"
+      ],
+      "rowOrder": [
+        "systemId"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.HostPortsiSCSI": {
@@ -230,6 +300,17 @@
           "name": "IQN",
           "source": "iqn"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "controllerLabel",
+        "portLabel"
+      ],
+      "rowOrder": [
+        "controllerLabel",
+        "portLabel"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.HostPortsFC": {
@@ -276,6 +357,17 @@
           "name": "NodeWWN",
           "source": "nodeWwn"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "controllerLabel",
+        "portLabel"
+      ],
+      "rowOrder": [
+        "controllerLabel",
+        "portLabel"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.DNS": {
@@ -300,6 +392,18 @@
           "format": "join",
           "delimiter": ", "
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "formatProfiles": [
+        "lenovo-de-table-default"
+      ],
+      "identityKeys": [
+        "systemId"
+      ],
+      "rowOrder": [
+        "systemId"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.Time": {
@@ -328,6 +432,18 @@
           "name": "DefaultRouter",
           "source": "ipv4DefaultRouter"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "formatProfiles": [
+        "lenovo-de-table-default"
+      ],
+      "identityKeys": [
+        "systemId"
+      ],
+      "rowOrder": [
+        "systemId"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.Hosts": {
@@ -348,6 +464,17 @@
           "name": "ClusterRef",
           "source": "clusterRef"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "id",
+        "name"
+      ],
+      "rowOrder": [
+        "id",
+        "name"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.HostGroups": {
@@ -366,6 +493,20 @@
           "format": "join",
           "delimiter": ", "
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "formatProfiles": [
+        "lenovo-de-table-default"
+      ],
+      "identityKeys": [
+        "id",
+        "name"
+      ],
+      "rowOrder": [
+        "id",
+        "name"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.HostsToHostGroups": {
@@ -386,6 +527,17 @@
           "name": "KeyType",
           "source": "hostGroupKeyType"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "hostName",
+        "hostGroupName"
+      ],
+      "rowOrder": [
+        "hostName",
+        "hostGroupName"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.HostGroupsToVolumes": {
@@ -406,6 +558,19 @@
           "name": "MappingRef",
           "source": "mappingRef"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "mappingRef",
+        "volumeName",
+        "hostGroupName"
+      ],
+      "rowOrder": [
+        "mappingRef",
+        "volumeName",
+        "hostGroupName"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.HostsToVolumes": {
@@ -426,6 +591,19 @@
           "name": "MappingRef",
           "source": "mappingRef"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "mappingRef",
+        "volumeName",
+        "hostName"
+      ],
+      "rowOrder": [
+        "mappingRef",
+        "volumeName",
+        "hostName"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.VolumeMappings": {
@@ -450,6 +628,17 @@
           "name": "MappingRef",
           "source": "mappingRef"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "mappingRef",
+        "volumeName"
+      ],
+      "rowOrder": [
+        "mappingRef",
+        "volumeName"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.AutoSupport": {
@@ -484,6 +673,18 @@
           "source": "maxSizeLimitSmtp",
           "format": "bytesHuman"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "formatProfiles": [
+        "lenovo-de-table-default"
+      ],
+      "identityKeys": [
+        "asupEnabled"
+      ],
+      "rowOrder": [
+        "asupEnabled"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.CapabilitiesSummary": {
@@ -515,6 +716,15 @@
           "name": "Entitlement",
           "source": "entitlement"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "displayName"
+      ],
+      "rowOrder": [
+        "sortOrder"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.CapabilitiesKeyFeatures": {
@@ -542,6 +752,15 @@
           "name": "Notes",
           "source": "notes"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "displayName"
+      ],
+      "rowOrder": [
+        "sortOrder"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.CapabilitiesLimits": {
@@ -585,6 +804,15 @@
           "name": "Entitlement",
           "source": "entitlement"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "displayName"
+      ],
+      "rowOrder": [
+        "sortOrder"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.Inventory": {
@@ -625,6 +853,15 @@
           "name": "DriveCount",
           "source": "driveCount"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "name"
+      ],
+      "rowOrder": [
+        "name"
       ]
     },
     "LNV.Lenovo.DE.System[ArrayName].Tables.Trays": {
@@ -661,6 +898,15 @@
           "name": "Status",
           "source": "status"
         }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "render-empty",
+      "identityKeys": [
+        "trayId"
+      ],
+      "rowOrder": [
+        "trayId"
       ]
     }
   }
