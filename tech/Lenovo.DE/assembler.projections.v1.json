@@ -586,6 +586,82 @@
           "source": "entitlement"
         }
       ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Tables.Inventory": {
+      "columns": [
+        {
+          "name": "SystemName",
+          "source": "name"
+        },
+        {
+          "name": "Model",
+          "source": "model"
+        },
+        {
+          "name": "Status",
+          "source": "status"
+        },
+        {
+          "name": "FirmwareVersion",
+          "source": "fwVersion"
+        },
+        {
+          "name": "ApplicationVersion",
+          "source": "appVersion"
+        },
+        {
+          "name": "ManagementIP",
+          "source": "ip2"
+        },
+        {
+          "name": "ControllerCount",
+          "source": "controllers"
+        },
+        {
+          "name": "TrayCount",
+          "source": "trayCount"
+        },
+        {
+          "name": "DriveCount",
+          "source": "driveCount"
+        }
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Tables.Trays": {
+      "columns": [
+        {
+          "name": "TrayId",
+          "source": "trayId"
+        },
+        {
+          "name": "TrayType",
+          "source": "trayType"
+        },
+        {
+          "name": "TrayRole",
+          "source": "trayRole"
+        },
+        {
+          "name": "SerialNumber",
+          "source": "serialNumber"
+        },
+        {
+          "name": "PartNumber",
+          "source": "partNumber"
+        },
+        {
+          "name": "DriveSlots",
+          "source": "numDriveSlots"
+        },
+        {
+          "name": "ControllerSlots",
+          "source": "numControllerSlots"
+        },
+        {
+          "name": "Status",
+          "source": "status"
+        }
+      ]
     }
   }
 }
