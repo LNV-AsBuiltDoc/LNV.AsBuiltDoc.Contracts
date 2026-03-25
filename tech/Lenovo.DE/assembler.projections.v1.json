@@ -360,7 +360,7 @@
       ],
       "renderMode": "table",
       "renderAs": "table",
-      "emptyBehavior": "render-empty",
+      "emptyBehavior": "placeholder",
       "identityKeys": [
         "controllerLabel",
         "portLabel"
@@ -907,6 +907,439 @@
       ],
       "rowOrder": [
         "trayId"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.ManagementInterfaces.ControllerA": {
+      "filter": [
+        {
+          "field": "controllerLabel",
+          "equals": "A"
+        }
+      ],
+      "columns": [
+        {
+          "name": "Controller",
+          "source": "controllerLabel"
+        },
+        {
+          "name": "Address",
+          "source": "ipv4Address"
+        },
+        {
+          "name": "Mask",
+          "source": "ipv4SubnetMask"
+        },
+        {
+          "name": "Gateway",
+          "source": "ipv4GatewayAddress"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerLabel",
+        "portLabel"
+      ],
+      "rowOrder": [
+        "controllerSlot",
+        "portLabel"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.ManagementInterfaces.ControllerB": {
+      "filter": [
+        {
+          "field": "controllerLabel",
+          "equals": "B"
+        }
+      ],
+      "columns": [
+        {
+          "name": "Controller",
+          "source": "controllerLabel"
+        },
+        {
+          "name": "Address",
+          "source": "ipv4Address"
+        },
+        {
+          "name": "Mask",
+          "source": "ipv4SubnetMask"
+        },
+        {
+          "name": "Gateway",
+          "source": "ipv4GatewayAddress"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerLabel",
+        "portLabel"
+      ],
+      "rowOrder": [
+        "controllerSlot",
+        "portLabel"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.DNS.Scope1": {
+      "columns": [
+        {
+          "name": "Scope",
+          "source": "controllerRef"
+        },
+        {
+          "name": "Acquisition",
+          "source": "dnsAcquisitionType"
+        },
+        {
+          "name": "DnsServers",
+          "source": "dnsServers",
+          "format": "join",
+          "delimiter": ", "
+        },
+        {
+          "name": "DhcpServers",
+          "source": "dhcpAcquiredServers",
+          "format": "join",
+          "delimiter": ", "
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerRef"
+      ],
+      "rowOrder": [
+        "controllerRef"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.DNS.Scope2": {
+      "columns": [
+        {
+          "name": "Scope",
+          "source": "controllerRef"
+        },
+        {
+          "name": "Acquisition",
+          "source": "dnsAcquisitionType"
+        },
+        {
+          "name": "DnsServers",
+          "source": "dnsServers",
+          "format": "join",
+          "delimiter": ", "
+        },
+        {
+          "name": "DhcpServers",
+          "source": "dhcpAcquiredServers",
+          "format": "join",
+          "delimiter": ", "
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerRef"
+      ],
+      "rowOrder": [
+        {
+          "by": "controllerRef",
+          "direction": "desc"
+        }
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.Time.Scope1": {
+      "columns": [
+        {
+          "name": "Scope",
+          "source": "controllerRef"
+        },
+        {
+          "name": "Acquisition",
+          "source": "ntpAcquisitionType"
+        },
+        {
+          "name": "NtpServers",
+          "source": "ntpServers",
+          "format": "join",
+          "delimiter": ", "
+        },
+        {
+          "name": "DhcpServers",
+          "source": "dhcpAcquiredServers",
+          "format": "join",
+          "delimiter": ", "
+        },
+        {
+          "name": "DefaultRouter",
+          "source": "ipv4DefaultRouter"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerRef"
+      ],
+      "rowOrder": [
+        "controllerRef"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.Time.Scope2": {
+      "columns": [
+        {
+          "name": "Scope",
+          "source": "controllerRef"
+        },
+        {
+          "name": "Acquisition",
+          "source": "ntpAcquisitionType"
+        },
+        {
+          "name": "NtpServers",
+          "source": "ntpServers",
+          "format": "join",
+          "delimiter": ", "
+        },
+        {
+          "name": "DhcpServers",
+          "source": "dhcpAcquiredServers",
+          "format": "join",
+          "delimiter": ", "
+        },
+        {
+          "name": "DefaultRouter",
+          "source": "ipv4DefaultRouter"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerRef"
+      ],
+      "rowOrder": [
+        {
+          "by": "controllerRef",
+          "direction": "desc"
+        }
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.HostPorts.Port1": {
+      "columns": [
+        {
+          "name": "Controller",
+          "source": "controllerLabel"
+        },
+        {
+          "name": "Port",
+          "source": "portLabel"
+        },
+        {
+          "name": "Transport",
+          "source": "transport"
+        },
+        {
+          "name": "Address",
+          "source": "ipv4Address"
+        },
+        {
+          "name": "IQN",
+          "source": "iqn"
+        },
+        {
+          "name": "PortWWN",
+          "source": "portWwn"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerLabel",
+        "channel",
+        "portLabel"
+      ],
+      "rowOrder": [
+        "controllerSlot",
+        "channel",
+        "portLabel"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.HostPorts.Port2": {
+      "columns": [
+        {
+          "name": "Controller",
+          "source": "controllerLabel"
+        },
+        {
+          "name": "Port",
+          "source": "portLabel"
+        },
+        {
+          "name": "Transport",
+          "source": "transport"
+        },
+        {
+          "name": "Address",
+          "source": "ipv4Address"
+        },
+        {
+          "name": "IQN",
+          "source": "iqn"
+        },
+        {
+          "name": "PortWWN",
+          "source": "portWwn"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "controllerLabel",
+        "channel",
+        "portLabel"
+      ],
+      "rowOrder": [
+        {
+          "by": "controllerSlot",
+          "direction": "desc"
+        },
+        "channel",
+        "portLabel"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemSummary.Fields": {
+      "columns": [
+        {
+          "name": "SystemName",
+          "source": "name"
+        },
+        {
+          "name": "Model",
+          "source": "model"
+        },
+        {
+          "name": "Status",
+          "source": "status"
+        },
+        {
+          "name": "FirmwareVersion",
+          "source": "fwVersion"
+        },
+        {
+          "name": "ApplicationVersion",
+          "source": "appVersion"
+        },
+        {
+          "name": "BootVersion",
+          "source": "bootVersion"
+        },
+        {
+          "name": "NvsramVersion",
+          "source": "nvsramVersion"
+        },
+        {
+          "name": "ManagementIP",
+          "source": "ip2"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "id"
+      ],
+      "rowOrder": [
+        "id"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemConfig.Fields": {
+      "columns": [
+        {
+          "name": "DriveCount",
+          "source": "driveCount"
+        },
+        {
+          "name": "TrayCount",
+          "source": "trayCount"
+        },
+        {
+          "name": "AutoLoadBalancingEnabled",
+          "source": "autoLoadBalancingEnabled"
+        },
+        {
+          "name": "HostConnectivityReportingEnabled",
+          "source": "hostConnectivityReportingEnabled"
+        },
+        {
+          "name": "AsupEnabled",
+          "source": "asupEnabled"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "id"
+      ],
+      "rowOrder": [
+        "id"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemEvidence.Fields": {
+      "columns": [
+        {
+          "name": "ActiveTransport",
+          "source": "activeTransport"
+        },
+        {
+          "name": "IscsiIqn",
+          "source": "iscsiIqn"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "systemId"
+      ],
+      "rowOrder": [
+        "systemId"
+      ]
+    },
+    "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemVersion.Fields": {
+      "columns": [
+        {
+          "name": "AsupEnabled",
+          "source": "asupEnabled"
+        },
+        {
+          "name": "OnDemandEnabled",
+          "source": "onDemandEnabled"
+        },
+        {
+          "name": "RemoteDiags",
+          "source": "remoteDiagsEnabled"
+        },
+        {
+          "name": "DeliveryMethod",
+          "source": "deliveryMethod"
+        }
+      ],
+      "renderMode": "table",
+      "renderAs": "table",
+      "emptyBehavior": "placeholder",
+      "identityKeys": [
+        "systemId"
+      ],
+      "rowOrder": [
+        "systemId"
       ]
     }
   }

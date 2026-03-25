@@ -3,7 +3,12 @@
   "dataset": "system-asup",
   "presentationKind": "table",
   "defaultItemRoot": "items",
-  "preferredProjectionViews": [],
+  "preferredProjectionViews": [
+    {
+      "name": "Version",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemVersion.Fields"
+    }
+  ],
   "datasetPath": {
     "template": "datasets/__TECH_ID__/__TARGET__/__SYSTEM__/__DATASET__.json",
     "scope": "system",

@@ -3,7 +3,16 @@
   "dataset": "transport",
   "presentationKind": "table",
   "defaultItemRoot": "items",
-  "preferredProjectionViews": [],
+  "preferredProjectionViews": [
+    {
+      "name": "Evidence",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemEvidence.Fields"
+    },
+    {
+      "name": "ActiveTransport",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemEvidence.Fields"
+    }
+  ],
   "datasetPath": {
     "template": "datasets/__TECH_ID__/__TARGET__/__SYSTEM__/__DATASET__.json",
     "scope": "system",

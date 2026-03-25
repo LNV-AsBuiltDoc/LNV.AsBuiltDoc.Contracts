@@ -5,6 +5,14 @@
   "defaultItemRoot": "items",
   "preferredProjectionViews": [
     {
+      "name": "Port1",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.HostPorts.Port1"
+    },
+    {
+      "name": "Port2",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.HostPorts.Port2"
+    },
+    {
       "name": "HostPortsiSCSI",
       "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Tables.HostPortsiSCSI"
     },

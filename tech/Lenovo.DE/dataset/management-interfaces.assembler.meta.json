@@ -3,7 +3,16 @@
   "dataset": "management-interfaces",
   "presentationKind": "table",
   "defaultItemRoot": "items",
-  "preferredProjectionViews": [],
+  "preferredProjectionViews": [
+    {
+      "name": "ControllerA",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.ManagementInterfaces.ControllerA"
+    },
+    {
+      "name": "ControllerB",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.ManagementInterfaces.ControllerB"
+    }
+  ],
   "datasetPath": {
     "template": "datasets/__TECH_ID__/__TARGET__/__SYSTEM__/__DATASET__.json",
     "scope": "system",

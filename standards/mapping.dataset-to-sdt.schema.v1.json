@@ -44,6 +44,9 @@
     },
     "syncPolicy": {
       "$ref": "#/$defs/syncPolicy"
+    },
+    "generatedFromContract": {
+      "$ref": "#/$defs/generatedFromContract"
     }
   },
   "$defs": {
@@ -83,6 +86,14 @@
         "dataset"
       ],
       "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "dual",
+            "target-first"
+          ],
+          "default": "dual"
+        },
         "dataset": {
           "type": "string",
           "minLength": 1
@@ -114,16 +125,51 @@
           "$ref": "#/$defs/renderHint"
         }
       },
-      "anyOf": [
+      "allOf": [
         {
-          "required": [
-            "sdtTag"
-          ]
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "target-first"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "dataset",
+              "target"
+            ]
+          },
+          "else": {
+            "anyOf": [
+              {
+                "required": [
+                  "sdtTag"
+                ]
+              },
+              {
+                "required": [
+                  "target"
+                ]
+              }
+            ]
+          }
         },
         {
-          "required": [
-            "target"
-          ]
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "target-first"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "sdtTag": {
+                "description": "Legacy compatibility tag retained for transition notes while target-first mappings are adopted."
+              }
+            }
+          }
         }
       ]
     },
@@ -277,6 +323,19 @@
             "blank",
             "placeholder"
           ]
+        }
+      }
+    },
+    "generatedFromContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
         }
       }
     }

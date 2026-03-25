@@ -3,7 +3,16 @@
   "dataset": "system-dns",
   "presentationKind": "table",
   "defaultItemRoot": "items",
-  "preferredProjectionViews": [],
+  "preferredProjectionViews": [
+    {
+      "name": "Scope1",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.DNS.Scope1"
+    },
+    {
+      "name": "Scope2",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.DNS.Scope2"
+    }
+  ],
   "datasetPath": {
     "template": "datasets/__TECH_ID__/__TARGET__/__SYSTEM__/__DATASET__.json",
     "scope": "system",

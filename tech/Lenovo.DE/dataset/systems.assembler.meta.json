@@ -5,7 +5,20 @@
   "defaultItemRoot": "items",
   "preferredProjectionViews": [
     {
-      "name": "Summary"
+      "name": "Summary",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemSummary.Fields"
+    },
+    {
+      "name": "Version",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemVersion.Fields"
+    },
+    {
+      "name": "Config",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemConfig.Fields"
+    },
+    {
+      "name": "Evidence",
+      "projectionRef": "LNV.Lenovo.DE.System[ArrayName].Narrative.SystemEvidence.Fields"
     }
   ],
   "datasetPath": {
