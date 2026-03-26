@@ -1150,10 +1150,6 @@
         {
           "name": "IQN",
           "source": "iqn"
-        },
-        {
-          "name": "PortWWN",
-          "source": "portWwn"
         }
       ],
       "renderMode": "table",
@@ -1191,10 +1187,6 @@
         {
           "name": "IQN",
           "source": "iqn"
-        },
-        {
-          "name": "PortWWN",
-          "source": "portWwn"
         }
       ],
       "renderMode": "table",

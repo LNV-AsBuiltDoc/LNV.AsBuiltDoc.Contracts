@@ -52,6 +52,30 @@
     "outputRoot": {
       "type": "string"
     },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "techId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "entryId": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputType": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "stages": {
       "$ref": "#/$defs/stages"
     },
