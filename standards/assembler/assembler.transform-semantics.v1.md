@@ -3,6 +3,59 @@
 ## Goal
 Lock deterministic transformation behavior from dataset envelopes to SDT targets.
 
+This document separates:
+- **Current runtime subset**: behavior implemented by the assembler runtime in this repo today.
+- **Target canonical semantics**: the intended Direct-v1 contract direction that is not yet fully enforced by the current renderer.
+
+## Current runtime subset
+
+### Current dependency chain
+1. Read Direct-v1 datasets from `lnv.collector.dataset.v1` envelopes.
+2. Resolve mapping entries and their `renderHint` fields (`projectionRef`, `view`, `renderAs`, legacy `renderMode`).
+3. Resolve projection definitions through direct tag lookup, alias lookup, `projectionRef`, or `view`.
+4. Execute the currently supported projection subset.
+5. Emit render units into DOCX or text output.
+
+### Current mode resolution
+The current renderer resolves execution mode in this order:
+1. projection `renderMode`
+2. mapping `renderMode`
+3. mapping `renderAs`
+4. `_TABLE_JSON` suffix heuristic
+5. fallback `scalar`
+
+Current supported runtime outputs:
+- `scalar`
+- `table`
+- `json-evidence`
+- `json-debug`
+
+`list` is part of the target contract surface, but it is not yet a distinct runtime rendering mode in the current renderer.
+
+### Current projection support
+The current renderer executes this subset:
+- selectors in listed order
+- projection lookup through tag, alias, `projectionRef`, and `view`
+- projection `filter`
+- legacy `sortBy`
+- projection `columns`
+- column formats `bytesHuman` and `join`
+- partial table empty handling through `emptyBehavior=placeholder`
+
+The current renderer does **not** yet fully execute:
+- `renderAs` as the authoritative mode switch
+- `renderAs`/`renderMode` mismatch-as-error validation
+- `rowOrder`
+- `identityKeys`
+- `formatProfiles`
+- full `emptyBehavior`
+
+### Why `renderAs` does not win today
+- Direct-v1 mapping contracts already use `renderAs`.
+- Sync already depends on `renderAs` and `syncPolicy` when generating runtime-facing mapping copies.
+- The renderer still depends on legacy `renderMode` precedence because the execution engine and validation rules have not yet caught up to the richer projection contract surface.
+- Current Lenovo.DE mappings and projections remain stable because the declared intent is mostly duplicated safely rather than conflicting.
+
 ## Canonical flow
 1. Resolve mapping entries for techId
 2. Load dataset envelope by `dataset.key`
@@ -17,7 +70,7 @@ Lock deterministic transformation behavior from dataset envelopes to SDT targets
 - Unknown selector fields in strict mode => error.
 - A selector may resolve to zero rows, one row, many rows, or a single object value. Projection semantics below define how each outcome is normalized before rendering.
 
-## Projection declaration semantics
+## Target canonical projection semantics (planned / not yet fully enforced)
 ### `renderAs`
 - `renderAs` is the projection-level rendering intent and should be preferred over legacy `renderMode` when both are present.
 - Supported intents are `scalar`, `table`, `list`, `json-evidence`, and `json-debug`.
