@@ -68,6 +68,19 @@ projections:
       - state
       - createdAt
       - policyType
+      - snapshotCount
+      - repositoryCapacity
+      - fullWarnThreshold
+      - autoDeleteLimit
+      - action
+      - lastRunTime
+      - nextRunTime
+      - timezone
+      - pitSequenceNumber
+      - creationMethod
+      - activeCOW
+      - repositoryCapacityUtilization
+      - isRollbackSource
       - notes
   - dataset: replication
     sdtName: Tables.Replication
