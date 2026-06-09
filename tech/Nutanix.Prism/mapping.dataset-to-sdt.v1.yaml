@@ -20,6 +20,10 @@ mappings:
     sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.Hosts
     required: false
     notes: Prism Element host inventory.
+  - dataset: host_nics
+    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.HostNics
+    required: false
+    notes: Prism Central host NIC inventory.
   - dataset: cvms
     sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.CVMs
     required: false
@@ -32,6 +36,10 @@ mappings:
     sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.Networks
     required: true
     notes: Network/subnet inventory from Prism Element or Prism Central.
+  - dataset: virtual_switches
+    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.VirtualSwitches
+    required: false
+    notes: Prism Central virtual switch inventory.
   - dataset: storage_containers
     sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.StorageContainers
     required: false
@@ -52,6 +60,14 @@ mappings:
     sdtTag: LNV.Nutanix.Prism.Global.Tables.Policies
     required: false
     notes: Prism Central policy inventory.
+  - dataset: templates
+    sdtTag: LNV.Nutanix.Prism.Global.Tables.Templates
+    required: false
+    notes: Prism Central VM template inventory.
+  - dataset: ssl_certificates
+    sdtTag: LNV.Nutanix.Prism.Global.Tables.SslCertificates
+    required: false
+    notes: Prism Central cluster SSL certificate metadata.
   - dataset: alerts
     sdtTag: LNV.Nutanix.Prism.Global.Tables.Alerts
     required: false

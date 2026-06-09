@@ -58,7 +58,17 @@ Current PC contracted datasets:
 - `policies`
 - `alerts`
 - `tasks`
+- `hosts`
+- `host_nics`
 - `networks`
+- `virtual_switches`
+- `storage_containers`
+- `volume_groups`
+- `images`
+- `templates`
+- `alerts_configuration`
+- `ssl_certificates`
+- `license`
 
 Provider fallback is selected per dataset. Prism Central collection attempts v4
 first, records the selected source in `collection_sources`, and falls back to v3

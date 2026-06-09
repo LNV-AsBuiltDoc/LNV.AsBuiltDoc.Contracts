@@ -14,8 +14,8 @@ Recommended placement:
   - Prism environment overview
   - Prism Central targets and managed clusters
   - Prism Element cluster-local inventory
-  - Compute inventory: hosts, CVMs, VMs, VM NICs
-  - Network inventory
+  - Compute inventory: hosts, host NICs, CVMs, VMs, VM NICs
+  - Network inventory: networks/subnets and virtual switches
   - Storage inventory: containers, pools, disks, datastores, virtual disks
   - Protection/replication inventory
   - Configuration: SMTP, SNMP, auth, NFS whitelist, witness, license
@@ -31,9 +31,11 @@ Per target, insert:
 2. Core tables
 - Clusters
 - Hosts
+- Host NICs
 - CVMs
 - VMs
 - Networks
+- Virtual switches
 - Storage containers
 - Storage pools
 - Disks
@@ -47,6 +49,8 @@ Per target, insert:
 - NFS whitelist
 - Witness
 - Images
+- Templates
+- SSL certificates
 - Health checks
 - Protection domains
 - Remote sites
@@ -70,6 +74,6 @@ Per target group, insert:
 - Put large raw/evidence-oriented tables in appendices.
 
 ## v1 Limits
-- Prism Central v4 is scaffolded but not yet the primary dataset source.
+- Prism Central v4 is the preferred source for PC-owned datasets, with Prism Central v3 and Prism Element retained for fallback and cluster-local coverage.
 - Target groups are optional and must not be required for target-only plans.
 - The assembler remains dataset-driven and target-group agnostic.

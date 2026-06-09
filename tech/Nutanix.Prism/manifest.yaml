@@ -29,7 +29,9 @@ spec:
     - tasks
     - cvms
     - hosts
+    - host_nics
     - networks
+    - virtual_switches
     - storage_containers
     - datastores
     - storage_pools
@@ -38,11 +40,13 @@ spec:
     - protection_domains
     - remote_sites
     - images
+    - templates
     - health_checks
     - alerts_configuration
     - smtp_config
     - snmp
     - authconfig
+    - ssl_certificates
     - nfs_whitelist
     - witness
     - snapshots
