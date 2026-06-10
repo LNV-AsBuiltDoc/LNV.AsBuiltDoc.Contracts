@@ -181,12 +181,15 @@
           "type": "object",
           "additionalProperties": false,
           "required": [
-            "dataset",
             "key",
             "value"
           ],
           "properties": {
             "dataset": {
+              "type": "string",
+              "minLength": 1
+            },
+            "contract": {
               "type": "string",
               "minLength": 1
             },
@@ -201,8 +204,55 @@
             "value": {
               "type": "string",
               "minLength": 1
+            },
+            "keyTransform": {
+              "type": "string",
+              "enum": [
+                "none",
+                "mtPrefix4"
+              ]
+            },
+            "fallbackSources": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "missingIssueCode": {
+              "type": "string",
+              "minLength": 1
+            },
+            "missingIssueSeverity": {
+              "type": "string",
+              "enum": [
+                "INFO",
+                "WARN"
+              ]
             }
-          }
+          },
+          "oneOf": [
+            {
+              "required": [
+                "dataset"
+              ],
+              "not": {
+                "required": [
+                  "contract"
+                ]
+              }
+            },
+            {
+              "required": [
+                "contract"
+              ],
+              "not": {
+                "required": [
+                  "dataset"
+                ]
+              }
+            }
+          ]
         }
       }
     },

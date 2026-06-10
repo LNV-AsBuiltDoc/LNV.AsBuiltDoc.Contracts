@@ -13,6 +13,7 @@ spec:
   datasetSchemaPath: dataset
   datasetToSdtMapping: mapping.dataset-to-sdt.v1.yaml
   assemblerDiagrams: assembler.diagrams.v1.json
+  physicalModels: physical-models.v1.json
   datasets:
     - systems
     - system-controllers

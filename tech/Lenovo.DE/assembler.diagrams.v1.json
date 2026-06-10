@@ -18,12 +18,17 @@
           "root": "items",
           "required": true
         },
-        "managementInterfaces": {
-          "dataset": "management-interfaces",
-          "root": "items",
-          "required": false
-        }
-      },
+    "managementInterfaces": {
+      "dataset": "management-interfaces",
+      "root": "items",
+      "required": false
+    },
+    "trays": {
+      "dataset": "trays",
+      "root": "items",
+      "required": false
+    }
+  },
       "layout": {
         "direction": "left-to-right",
         "title": "Host Port Topology",

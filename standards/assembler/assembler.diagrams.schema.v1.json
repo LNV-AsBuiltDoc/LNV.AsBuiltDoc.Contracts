@@ -111,6 +111,17 @@
       "type": "object",
       "additionalProperties": true,
       "properties": {
+        "assetIndex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assetRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assetLookup": {
+          "$ref": "#/$defs/assetLookup"
+        },
         "theme": {
           "type": "object",
           "additionalProperties": true
@@ -121,6 +132,47 @@
             "type": "string",
             "minLength": 1
           }
+        }
+      }
+    },
+    "assetLookup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "modelFamily",
+        "enclosure",
+        "view"
+      ],
+      "properties": {
+        "modelFamily": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelSuffix": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "enclosure": {
+          "type": "string",
+          "minLength": 1
+        },
+        "view": {
+          "type": "string",
+          "enum": [
+            "front",
+            "front-open",
+            "rear"
+          ]
+        },
+        "rearModule": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
         }
       }
     },
@@ -221,6 +273,13 @@
         "icon": {
           "type": "string",
           "minLength": 1
+        },
+        "assetRef": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assetLookup": {
+          "$ref": "#/$defs/assetLookup"
         },
         "fields": {
           "type": "array",

@@ -6,8 +6,12 @@ metadata:
 spec:
   entrypoint: Invoke-LnvAsBuiltDoc.NetApp.ONTAP
   bundleSchemas:
+    manifest: lnv.bundle.manifest.v1
+    configUsed: lnv.bundle.config_used.v1
     dataset: lnv.collector.dataset.v1
+  planValidation: plan_validation.yaml
   datasetSchemaPath: dataset
+  datasetToSdtMapping: mapping.dataset-to-sdt.v1.yaml
   datasets:
     - cluster
     - nodes

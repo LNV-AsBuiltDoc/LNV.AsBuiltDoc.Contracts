@@ -884,6 +884,23 @@
           "source": "trayId"
         },
         {
+          "name": "Model",
+          "source": "partNumber",
+          "lookup": {
+            "contract": "physical-models.v1.json",
+            "selector": "items",
+            "key": "mtPrefix",
+            "value": "displayName",
+            "keyTransform": "mtPrefix4",
+            "fallbackSources": [
+              "controllerModelName",
+              "trayType"
+            ],
+            "missingIssueCode": "ASB-ASM-DE-MODEL-LOOKUP-MISS",
+            "missingIssueSeverity": "WARN"
+          }
+        },
+        {
           "name": "TrayType",
           "source": "trayType"
         },
