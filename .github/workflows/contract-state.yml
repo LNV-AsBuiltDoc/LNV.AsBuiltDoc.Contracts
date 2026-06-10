@@ -1,0 +1,22 @@
+name: Publish Contract State
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    tags:
+      - 'v*'
+  schedule:
+    - cron: '7 3 * * *'
+
+permissions:
+  contents: read
+  checks: read
+  statuses: read
+
+jobs:
+  publish:
+    uses: LNV-AsBuiltDoc/LNV.AsBuiltDoc.KnowledgeContracts/.github/workflows/publish-contract-state.yml@v1
+    with:
+      role: contract-authority
