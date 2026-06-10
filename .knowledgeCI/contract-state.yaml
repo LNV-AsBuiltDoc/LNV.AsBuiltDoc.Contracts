@@ -1,0 +1,14 @@
+repository:
+  owner: LNV-AsBuiltDoc
+  name: LNV.AsBuiltDoc.Contracts
+direct_v1: true
+supported_contracts_range: ">=2.0.0 <3.0.0"
+strict_contracts_capable: false
+required_checks:
+  - Release contracts pack
+discovery:
+  standards:
+    - standards/**/*.json
+  tech_manifests:
+    - tech/**/manifest.yaml
+  contract_exports: []
