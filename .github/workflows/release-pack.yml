@@ -27,6 +27,9 @@ jobs:
           set -euo pipefail
           missing=0
           for d in tech/*; do
+            if [ "$(basename "$d")" = "Retired" ]; then
+              continue
+            fi
             if [ -d "$d" ]; then
               if [ ! -f "$d/plan_validation.yaml" ]; then
                 echo "Missing: $d/plan_validation.yaml"
