@@ -1,0 +1,11 @@
+gaps:
+- gap_id: GAP-Nutanix.PrismElement-mapping-missing
+  type: unknown_field
+  severity: high
+  affected_concepts:
+  - dataset.images
+  evidence:
+  - 'tech/Nutanix.PrismElement/manifest.yaml datasets: [''images'']'
+  - tech/Nutanix.PrismElement/mapping.dataset-to-sdt.v1.yaml incomplete
+  proposed_resolution: Align mapping entries with manifest datasets.
+  owner: repo-owner

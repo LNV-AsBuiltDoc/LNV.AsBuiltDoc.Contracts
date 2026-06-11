@@ -5,6 +5,10 @@ Releases are consumed as immutable versioned packs by LNV.AsBuiltDoc.Core.
 
 ## 1. Pre-release validation
 
+The `Release contracts pack` workflow runs validation on relevant pull requests,
+pushes to `dev`, and release tags. Do not create a release tag unless the latest
+`dev` validation run succeeded.
+
 ### 1.1 Required standards schemas present
 Confirm these exist under `standards/`:
 - solution.plan.schema.v1.json
@@ -45,8 +49,13 @@ Contents:
 Reference command (run from repo root):
 - `git archive --format=zip --output asbuiltdoc-contracts-vX.Y.Z.zip HEAD standards tech`
 
+Packaging rules:
+- Package tracked `HEAD` content only from `standards/` and `tech/`.
+- Untracked or locally generated files are intentionally excluded from the release zip.
+
 Validation command:
 - `unzip -l asbuiltdoc-contracts-vX.Y.Z.zip`
+- Confirm the archive lists `standards/` and `tech/` entries from the tagged commit, with no unexpected workspace-only files.
 
 ## 3. Smoke test the pack (required)
 

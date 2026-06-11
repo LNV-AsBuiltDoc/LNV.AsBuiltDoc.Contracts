@@ -1,0 +1,64 @@
+concept_id,source_path,artifact_class,field_path,data_type,required,allowed_values,default,description,example,semantic_notes,normalization_notes,confidence
+assembler.input.v1.schemaVersion,standards/assembler/assembler.input.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.input.v1.bundle,standards/assembler/assembler.input.schema.v1.json,schema,properties.bundle,object,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.input.v1.contracts,standards/assembler/assembler.input.schema.v1.json,schema,properties.contracts,object,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.input.v1.template,standards/assembler/assembler.input.schema.v1.json,schema,properties.template,object,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.input.v1.options,standards/assembler/assembler.input.schema.v1.json,schema,properties.options,object,false,,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.schemaVersion,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.status,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.status,string,true,OK|PARTIAL|ERROR,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.startedUtc,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.startedUtc,string,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.completedUtc,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.completedUtc,string,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.bundleId,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.bundleId,"['string', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.stages,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.stages,array,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.issues,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.issues,array,true,,,,,json-schema property,derived from schema properties,0.93
+assembler.render-report.v1.outputs,standards/assembler/assembler.render-report.schema.v1.json,schema,properties.outputs,array,false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.schemaVersion,standards/bundle.manifest.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.bundleId,standards/bundle.manifest.schema.v1.json,schema,properties.bundleId,string,true,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.createdUtc,standards/bundle.manifest.schema.v1.json,schema,properties.createdUtc,string,true,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.completedUtc,standards/bundle.manifest.schema.v1.json,schema,properties.completedUtc,"['string', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.createdBy,standards/bundle.manifest.schema.v1.json,schema,properties.createdBy,"['object', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.environment,standards/bundle.manifest.schema.v1.json,schema,properties.environment,"['object', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.tech,standards/bundle.manifest.schema.v1.json,schema,properties.tech,"['array', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.targets,standards/bundle.manifest.schema.v1.json,schema,properties.targets,"['array', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.dependencies,standards/bundle.manifest.schema.v1.json,schema,properties.dependencies,"['object', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.files,standards/bundle.manifest.schema.v1.json,schema,properties.files,array,true,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.results,standards/bundle.manifest.schema.v1.json,schema,properties.results,array,true,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.integrity,standards/bundle.manifest.schema.v1.json,schema,properties.integrity,"['object', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+bundle.manifest.v1.objectIndex,standards/bundle.manifest.schema.v1.json,schema,properties.objectIndex,"['object', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.schemaVersion,standards/coverage.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.techId,standards/coverage.schema.v1.json,schema,properties.techId,string,true,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.targetKey,standards/coverage.schema.v1.json,schema,properties.targetKey,string,true,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.status,standards/coverage.schema.v1.json,schema,properties.status,string,true,OK|PARTIAL|ERROR|SKIPPED,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.collectedUtc,standards/coverage.schema.v1.json,schema,properties.collectedUtc,string,true,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.datasetsExpected,standards/coverage.schema.v1.json,schema,properties.datasetsExpected,array,false,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.datasetsWritten,standards/coverage.schema.v1.json,schema,properties.datasetsWritten,array,false,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.missing,standards/coverage.schema.v1.json,schema,properties.missing,array,false,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.warnings,standards/coverage.schema.v1.json,schema,properties.warnings,array,false,,,,,json-schema property,derived from schema properties,0.93
+coverage.v1.errors,standards/coverage.schema.v1.json,schema,properties.errors,array,false,,,,,json-schema property,derived from schema properties,0.93
+finding.v1.schemaVersion,standards/finding.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+finding.v1.id,standards/finding.schema.v1.json,schema,properties.id,string,true,,,,,json-schema property,derived from schema properties,0.93
+finding.v1.title,standards/finding.schema.v1.json,schema,properties.title,string,true,,,,,json-schema property,derived from schema properties,0.93
+finding.v1.severity,standards/finding.schema.v1.json,schema,properties.severity,string,true,Info|Low|Medium|High|Critical,,,,json-schema property,derived from schema properties,0.93
+finding.v1.category,standards/finding.schema.v1.json,schema,properties.category,string,true,Config|Security|Availability|Performance|Compliance|Other,,,,json-schema property,derived from schema properties,0.93
+finding.v1.summary,standards/finding.schema.v1.json,schema,properties.summary,"['string', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+finding.v1.recommendation,standards/finding.schema.v1.json,schema,properties.recommendation,"['string', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+finding.v1.evidenceRefs,standards/finding.schema.v1.json,schema,properties.evidenceRefs,array,false,,,,,json-schema property,derived from schema properties,0.93
+finding.v1.collectedUtc,standards/finding.schema.v1.json,schema,properties.collectedUtc,string,true,,,,,json-schema property,derived from schema properties,0.93
+mapping.dataset-to-sdt.v1.schema,standards/mapping.dataset-to-sdt.schema.v1.json,schema,properties.schema,string,true,,,,,json-schema property,derived from schema properties,0.93
+mapping.dataset-to-sdt.v1.schemaVersion,standards/mapping.dataset-to-sdt.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+mapping.dataset-to-sdt.v1.techId,standards/mapping.dataset-to-sdt.schema.v1.json,schema,properties.techId,string,true,,,,,json-schema property,derived from schema properties,0.93
+mapping.dataset-to-sdt.v1.displayName,standards/mapping.dataset-to-sdt.schema.v1.json,schema,properties.displayName,string,false,,,,,json-schema property,derived from schema properties,0.93
+mapping.dataset-to-sdt.v1.compatibility,standards/mapping.dataset-to-sdt.schema.v1.json,schema,properties.compatibility,object,true,,,,,json-schema property,derived from schema properties,0.93
+mapping.dataset-to-sdt.v1.mappings,standards/mapping.dataset-to-sdt.schema.v1.json,schema,properties.mappings,array,true,,,,,json-schema property,derived from schema properties,0.93
+mapping.dataset-to-sdt.v1.strictContracts,standards/mapping.dataset-to-sdt.schema.v1.json,schema,properties.strictContracts,object,false,,,,,json-schema property,derived from schema properties,0.93
+objectIndex.v1.schemaVersion,standards/objectIndex.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+objectIndex.v1.collectedUtc,standards/objectIndex.schema.v1.json,schema,properties.collectedUtc,string,true,,,,,json-schema property,derived from schema properties,0.93
+objectIndex.v1.objects,standards/objectIndex.schema.v1.json,schema,properties.objects,array,true,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.schemaVersion,standards/solution.plan.schema.v1.json,schema,properties.schemaVersion,integer,true,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.solutionId,standards/solution.plan.schema.v1.json,schema,properties.solutionId,string,true,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.description,standards/solution.plan.schema.v1.json,schema,properties.description,string,false,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.createdBy,standards/solution.plan.schema.v1.json,schema,properties.createdBy,string,false,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.contracts,standards/solution.plan.schema.v1.json,schema,properties.contracts,"['object', 'null']",false,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.targets,standards/solution.plan.schema.v1.json,schema,properties.targets,array,true,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.collectors,standards/solution.plan.schema.v1.json,schema,properties.collectors,array,true,,,,,json-schema property,derived from schema properties,0.93
+solution.plan.v1.auth,standards/solution.plan.schema.v1.json,schema,properties.auth,object,false,,,,,json-schema property,derived from schema properties,0.93

@@ -1,0 +1,23 @@
+repo:
+  name: LNV.AsBuiltDoc.Contracts
+  url: unknown
+  default_branch: unknown
+  commit_sha: f0a05ec570e99c5eaf51ba82e7e0bf01a69ffce0
+  owner: unknown
+sources_summary:
+  total_discovered: 12
+  by_class:
+    schema: 12
+concepts_summary:
+  total_concepts: 63
+  critical_concepts_mapped: 12
+conflicts_summary:
+  total_gaps: 1
+  blocker: 0
+  high: 1
+confidence_score: 75
+readiness_status: reviewed
+next_actions:
+- Fill metadata placeholders.
+- Review inferred rows in concepts.csv.
+- Resolve high-severity mapping gaps.

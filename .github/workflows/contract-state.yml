@@ -1,0 +1,46 @@
+name: Publish Contract State
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    tags:
+      - 'v*'
+  schedule:
+    - cron: '7 3 * * *'
+
+permissions:
+  contents: read
+  checks: read
+  statuses: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check jsonschema PyYAML
+
+      - name: Collect and validate state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python .knowledgeCI/collect_contract_state.py \
+            --repo-root . \
+            --role contract-authority \
+            --schema .knowledgeCI/contract-state.schema.v1.json \
+            --output contract-state.json
+
+      - name: Upload contract state
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-contract-state
+          path: contract-state.json
+          retention-days: 14
+          if-no-files-found: error

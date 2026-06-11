@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lnv.asbuiltdoc/contracts/standards/contract-state.schema.v1.json",
+  "title": "AsBuiltDoc Repository Contract State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAtUtc",
+    "repository",
+    "component",
+    "contracts",
+    "artifacts",
+    "validation",
+    "diagnostics"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "generatedAtUtc": { "type": "string", "format": "date-time" },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "name", "fullName", "role", "commit", "branch"],
+      "properties": {
+        "owner": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "fullName": { "type": "string", "minLength": 3 },
+        "role": {
+          "enum": ["contract-authority", "core", "assembler", "collector", "legacy"]
+        },
+        "commit": { "type": "string", "minLength": 7 },
+        "branch": { "type": "string", "minLength": 1 },
+        "tag": { "type": ["string", "null"] },
+        "workflowRunUrl": { "type": ["string", "null"], "format": "uri" }
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "versionSource", "directV1", "technologyIds"],
+      "properties": {
+        "version": { "type": ["string", "null"] },
+        "versionSource": { "type": ["string", "null"] },
+        "directV1": { "type": "boolean" },
+        "technologyIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolvedVersion",
+        "versionSource",
+        "supportedRange",
+        "snapshot",
+        "schemaIdentifiers"
+      ],
+      "properties": {
+        "resolvedVersion": { "type": ["string", "null"] },
+        "versionSource": { "type": ["string", "null"] },
+        "supportedRange": { "type": ["string", "null"] },
+        "snapshot": {
+          "type": ["object", "null"],
+          "additionalProperties": true,
+          "properties": {
+            "path": { "type": "string" },
+            "version": { "type": ["string", "null"] },
+            "source": { "type": ["string", "null"] },
+            "checksum": { "type": ["string", "null"] },
+            "syncedAtUtc": { "type": ["string", "null"] }
+          }
+        },
+        "schemaIdentifiers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["standards", "techManifests", "contractExports"],
+      "properties": {
+        "standards": { "$ref": "#/$defs/evidenceList" },
+        "techManifests": { "$ref": "#/$defs/evidenceList" },
+        "contractExports": { "$ref": "#/$defs/evidenceList" }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredChecks", "strictContractsCapable"],
+      "properties": {
+        "requiredChecks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "status"],
+            "properties": {
+              "name": { "type": "string" },
+              "status": { "enum": ["passing", "failing", "unknown"] }
+            }
+          }
+        },
+        "strictContractsCapable": { "type": "boolean" }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["warnings", "errors", "evidence"],
+      "properties": {
+        "warnings": { "type": "array", "items": { "type": "string" } },
+        "errors": { "type": "array", "items": { "type": "string" } },
+        "evidence": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    }
+  },
+  "$defs": {
+    "evidenceList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        }
+      }
+    }
+  }
+}

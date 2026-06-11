@@ -1,0 +1,208 @@
+planSchema: lnv.contracts.codex.onboarding.v1
+metadata:
+  id: collector-contracts-zero-context-onboarding
+  version: 1.0.0
+  audience:
+    - codex-agent
+    - contracts-maintainer
+    - collector-module-maintainer
+  purpose: >-
+    End-to-end machine-readable operating plan for understanding, extending,
+    and validating Direct-v1 collector contracts from zero project knowledge.
+
+repositoryModel:
+  rootConcept: Contracts Pack consumed by Core runtime
+  expectedRootLayout:
+    - standards/
+    - tech/
+    - contracts.snapshot.json
+  compatibilityWindow:
+    contractsPackVersion: ">=2.0.0 <3.0.0"
+
+vocabulary:
+  DirectV1:
+    description: Execution model where Core drives collectors using plan + targets
+  CollectorContractManifest:
+    description: Tech manifest type that opts a tech into normalized contracts behavior
+  DatasetEnvelope:
+    schema_version: lnv.collector.dataset.v1
+    requiredFields:
+      - collector
+      - source
+      - dataset
+      - item_count
+      - items
+
+zeroContextBootstrap:
+  readInOrder:
+    - standards/architecture.direct-v1.collector-contracts.md
+    - standards/solution.plan.schema.v1.json
+    - standards/bundle.manifest.schema.v1.json
+    - standards/objectIndex.schema.v1.json
+    - standards/coverage.schema.v1.json
+    - standards/finding.schema.v1.json
+    - standards/mapping.dataset-to-sdt.schema.v1.json
+    - tech/<TechId>/manifest.yaml
+    - tech/<TechId>/plan_validation.yaml
+    - tech/<TechId>/collector_spec.md
+    - tech/<TechId>/sdt_inventory.md
+    - tech/<TechId>/mapping.dataset-to-sdt.v1.yaml
+  decisionGate:
+    - detectManifestKind
+    - branchHarnessVsCollectorContract
+
+techClassification:
+  harnessTech:
+    detection:
+      - manifest.kind != CollectorContractManifest
+    behavior:
+      - legacy or harness-specific rules
+      - no dataset-envelope migration obligations
+  collectorContractTech:
+    detection:
+      - manifest.kind == CollectorContractManifest
+    behavior:
+      - strict Direct-v1 contract model
+      - dataset envelope required
+      - dataset schema path under tech/<TechId>/dataset/
+
+collectorContractRequirements:
+  manifest:
+    required:
+      - kind: CollectorContractManifest
+      - spec.datasetSchemaPath: dataset
+      - spec.datasetToSdtMapping: mapping.dataset-to-sdt.v1.yaml
+      - spec.datasets: non-empty list
+      - spec.bundleSchemas.dataset: lnv.collector.dataset.v1
+    optional:
+      - metadata.collector
+      - spec.entrypoint
+      - spec.apiSupport
+  requiredFiles:
+    - tech/<TechId>/manifest.yaml
+    - tech/<TechId>/plan_validation.yaml
+    - tech/<TechId>/collector_spec.md
+    - tech/<TechId>/sdt_inventory.md
+    - tech/<TechId>/skeleton_blueprint.md
+    - tech/<TechId>/mapping.dataset-to-sdt.v1.yaml
+  forbiddenLayout:
+    - tech/<TechId>/datasets/
+  requiredSchemaLayout:
+    - tech/<TechId>/dataset/*.schema.json
+
+datasetContract:
+  envelope:
+    schema_version: lnv.collector.dataset.v1
+    requiredFields:
+      collector:
+        required:
+          - tech_id
+          - module
+          - entry_point
+      source:
+        required:
+          - bundle_id
+          - bundle_root
+          - file
+      dataset:
+        required:
+          - key
+          - schema_path
+      item_count:
+        type: integer
+        equals: len(items)
+      items:
+        type: array
+  identityRules:
+    - dataset filename without extension is dataset key
+    - dataset key must exist in spec.datasets
+    - dataset.schema_path must map to tech/<TechId>/<datasetSchemaPath>/<datasetKey>.schema.json
+  legacyInputHandling:
+    acceptedLegacyShapes:
+      - schemaVersion + items
+      - items without schema_version
+    migrationTarget:
+      schema_version: lnv.collector.dataset.v1
+      requiredFields:
+        - collector
+        - source
+        - dataset
+        - item_count
+        - items
+    rejectedShapes:
+      - unknown object without schema_version and without items
+      - schema_version not equal to lnv.collector.dataset.v1
+
+coreRuntimeIntegration:
+  hookPoint:
+    function: Invoke-LnvSolutionCaptureCore
+    stage: post-collector-invocation
+  responsibilities:
+    - validate collector-contract tech manifests
+    - enforce contracts snapshot compatibility for collector-contract techs
+    - normalize/migrate dataset files to envelope format
+    - reject non-conforming envelope payloads
+
+contractsUpdateWorkflow:
+  forNewTech:
+    steps:
+      - create tech/<TechId>/manifest.yaml with CollectorContractManifest
+      - define spec.datasets list
+      - add dataset schemas under tech/<TechId>/dataset/*.schema.json
+      - add mapping.dataset-to-sdt.v1.yaml
+      - add collector_spec.md, sdt_inventory.md, skeleton_blueprint.md, plan_validation.yaml
+      - verify no legacy datasets/ folder exists
+  forExistingCollectorContractTech:
+    steps:
+      - update manifest spec.datasets if dataset set changed
+      - add or modify dataset schemas for every changed dataset key
+      - update mapping file for SDT alignment
+      - ensure collector emits required envelope fields
+
+validationChecklist:
+  structural:
+    - contracts.snapshot.json exists and parseable
+    - snapshot.version in >=2.0.0 <3.0.0
+    - required manifest and docs files present
+    - legacy datasets folder absent
+    - dataset schema files exist
+  semantic:
+    - every emitted dataset key in spec.datasets
+    - every emitted dataset has valid envelope fields
+    - item_count equals length(items)
+    - dataset schema_path points to existing schema
+
+implementationPlaybookForAgent:
+  constraints:
+    - keep Core collector-agnostic
+    - avoid tech-specific hardcoding in runtime flow
+    - prefer manifest-driven behavior
+  whenChangingCore:
+    - update generic validators first
+    - update generic dataset normalization path
+    - preserve backward compatibility aliases only when needed
+  whenChangingContracts:
+    - update docs and manifest/schema/mapping in one change set
+    - include explicit acceptance criteria in PR body
+
+handoffTemplate:
+  promptPayload:
+    requiredContext:
+      - contracts pack version
+      - target tech id
+      - manifest content
+      - dataset schema files list
+      - sample emitted dataset files
+    requiredOutcomes:
+      - pass structural checklist
+      - pass semantic checklist
+      - no tech-specific Core branching
+
+acceptance:
+  mustPassAll:
+    - collectorContractRequirements
+    - datasetContract
+    - validationChecklist
+  releaseGate:
+    mode: atomic
+    blockOnAnyFailure: true

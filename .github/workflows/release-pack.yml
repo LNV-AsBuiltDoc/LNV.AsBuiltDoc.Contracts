@@ -1,59 +1,79 @@
 name: Release contracts pack
 
 on:
+  pull_request:
+    branches:
+      - dev
+      - main
+    paths:
+      - ".github/scripts/validate_contracts_pack.py"
+      - ".github/workflows/release-pack.yml"
+      - "standards/**"
+      - "tech/**"
   push:
+    branches:
+      - dev
     tags:
       - "v*"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  pack-and-release:
+  validate:
+    name: Validate contracts pack
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate required folders exist
-        shell: bash
-        run: |
-          test -d standards
-          test -d tech
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check PyYAML
 
-      - name: Ensure plan_validation.yaml exists for each tech
+      - name: Validate contracts
+        run: python .github/scripts/validate_contracts_pack.py --repo-root .
+
+      - name: Build and test candidate archive
         shell: bash
         run: |
           set -euo pipefail
-          missing=0
-          for d in tech/*; do
-            if [ -d "$d" ]; then
-              if [ ! -f "$d/plan_validation.yaml" ]; then
-                echo "Missing: $d/plan_validation.yaml"
-                missing=1
-              fi
-            fi
-          done
-          if [ "$missing" -ne 0 ]; then
-            echo "One or more tech folders are missing plan_validation.yaml"
-            exit 1
-          fi
+          git archive --format=zip --output contracts-pack-validation.zip HEAD standards tech
+          unzip -t contracts-pack-validation.zip
+
+  pack-and-release:
+    name: Publish contracts pack
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Build pack
+        id: build_pack
         shell: bash
         run: |
+          set -euo pipefail
           TAG="${GITHUB_REF_NAME}"          # e.g. v1.0.1
           VER="${TAG#v}"                    # e.g. 1.0.1
           ZIP="asbuiltdoc-contracts-v${VER}.zip"
-          rm -f "$ZIP"
-          zip -r "$ZIP" standards tech
-          sha256sum "$ZIP" | tee "${ZIP}.sha256"
+          SHA="${ZIP}.sha256"
+          rm -f "$ZIP" "$SHA"
+          git archive --format=zip --output "$ZIP" HEAD standards tech
+          sha256sum "$ZIP" | tee "$SHA"
+          {
+            echo "ver=$VER"
+            echo "zip=$ZIP"
+            echo "sha=$SHA"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release + upload assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            asbuiltdoc-contracts-*.zip
-            asbuiltdoc-contracts-*.zip.sha256
+            ${{ steps.build_pack.outputs.zip }}
+            ${{ steps.build_pack.outputs.sha }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
