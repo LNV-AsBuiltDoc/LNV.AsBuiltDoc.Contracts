@@ -12,9 +12,14 @@ Releases are produced by GitHub Actions workflow `.github/workflows/release-pack
 ### What triggers a release
 - Pushing a tag that matches `v*` (for example `v1.2.3`).
 
+### Pre-release validation
+- Pull requests targeting `dev` or `main` validate changes under `standards/` and `tech/`.
+- Pushes to `dev` run the same validation used by tagged releases.
+- Validation checks required contract files, JSON/YAML syntax, manifest dataset paths, and the candidate zip archive.
+
 ### What the workflow does
 1. Validates required folders exist: `standards/` and `tech/`.
-2. Verifies every `tech/*` folder has `plan_validation.yaml`.
+2. Verifies every `tech/*` folder has `manifest.yaml` and `plan_validation.yaml`.
 3. Builds `asbuiltdoc-contracts-vX.Y.Z.zip` from `standards/` + `tech/`.
 4. Generates `asbuiltdoc-contracts-vX.Y.Z.zip.sha256`.
 5. Creates/updates the GitHub Release for the tag and uploads both assets.

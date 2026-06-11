@@ -5,6 +5,10 @@ Releases are consumed as immutable versioned packs by LNV.AsBuiltDoc.Core.
 
 ## 1. Pre-release validation
 
+The `Release contracts pack` workflow runs validation on relevant pull requests,
+pushes to `dev`, and release tags. Do not create a release tag unless the latest
+`dev` validation run succeeded.
+
 ### 1.1 Required standards schemas present
 Confirm these exist under `standards/`:
 - solution.plan.schema.v1.json
