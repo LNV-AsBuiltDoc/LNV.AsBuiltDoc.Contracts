@@ -52,4 +52,4 @@ REST remains in use for REST-only gap datasets such as consistency groups, S3, m
 
 ## Outputs
 
-The collector writes one dataset envelope per manifest dataset, per-target coverage, and a root object index. Diagram rendering is not performed by the collector; graph datasets and asset contracts are assembler inputs.
+The collector writes one dataset envelope per manifest dataset at `datasets/NetApp.ONTAP/core/<TargetKey>/<Dataset>.json`, per-target coverage at the same canonical target root, and child identities into the Core-owned root object index. Redacted REST and Toolkit captures are evidence under `evidence/NetApp.ONTAP/<TargetKey>/`; they are not document datasets. The collector does not create `collector-out`, `target_*`, a nested manifest, or a target-local `raw` directory. Diagram rendering is not performed by the collector; graph datasets and asset contracts are assembler inputs.
