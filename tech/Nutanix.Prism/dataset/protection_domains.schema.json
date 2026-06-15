@@ -48,9 +48,17 @@
       "minimum": 0
     },
     "items": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {},
+          "uuid": {},
+          "status": {}
+        },
+        "additionalProperties": true
+      }
     }
   },
   "additionalProperties": true
 }
-

@@ -48,7 +48,17 @@
       "minimum": 0
     },
     "items": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relationshipType": {},
+          "sourceKey": {},
+          "targetKey": {},
+          "correlationStatus": {}
+        },
+        "additionalProperties": true
+      }
     }
   },
   "additionalProperties": true

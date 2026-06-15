@@ -48,9 +48,18 @@
       "minimum": 0
     },
     "items": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vmName": {},
+          "name": {},
+          "macAddress": {},
+          "networkName": {}
+        },
+        "additionalProperties": true
+      }
     }
   },
   "additionalProperties": true
 }
-

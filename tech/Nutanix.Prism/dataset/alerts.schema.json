@@ -48,7 +48,16 @@
       "minimum": 0
     },
     "items": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {},
+          "severity": {},
+          "status": {}
+        },
+        "additionalProperties": true
+      }
     }
   },
   "additionalProperties": true

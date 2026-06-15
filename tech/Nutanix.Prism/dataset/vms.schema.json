@@ -48,9 +48,18 @@
       "minimum": 0
     },
     "items": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {},
+          "uuid": {},
+          "extId": {},
+          "controllerVm": {}
+        },
+        "additionalProperties": true
+      }
     }
   },
   "additionalProperties": true
 }
-
