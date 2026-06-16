@@ -12,6 +12,8 @@ spec:
   planValidation: plan_validation.yaml
   datasetSchemaPath: dataset
   datasetToSdtMapping: mapping.dataset-to-sdt.v1.yaml
+  assemblerProjections: assembler.projections.v1.json
+  contributionModel: canonical-composition
   apiSupport:
     stable: v2
     fallback:
@@ -58,4 +60,3 @@ spec:
     - license
     - collection_sources
     - relationships
-

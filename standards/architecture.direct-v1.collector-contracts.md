@@ -39,6 +39,10 @@ Required fields in each dataset file:
 
 And:
 
+- `collector.tech_id` MUST equal the technology directory ID.
+- `collector.module` and `collector.entry_point` MUST identify the invoked Direct-v1 collector.
+- `source.target_key` MUST equal the canonical object key in the dataset path.
+- `source.file` MUST equal the bundle-relative canonical dataset path.
 - `item_count` MUST equal the length of `items`.
 - `<datasetKey>.json` MUST map to `tech/<TechId>/<datasetSchemaPath>/<datasetKey>.schema.json`.
 - Dataset keys MUST be in `spec.datasets`.
@@ -46,9 +50,12 @@ And:
 ## 4) Contracts pack compatibility
 Collector-contract tech validation assumes contracts pack version `>=2.0.0 <3.0.0` via `contracts.snapshot.json`.
 
-## 5) Migration behavior (Core compatibility path)
-Until all modules emit the envelope natively, Core may migrate legacy wrapper payloads (`{ schemaVersion, items }`) into the required envelope shape. Assemblers may also apply narrowly-scoped compatibility for legacy `run_summary.json` summary payloads while Lenovo.DE/Core are updated to emit native envelopes.
-This compatibility path is transitional and should be removed after all collectors emit native envelope output.
+## 5) Canonical output enforcement
+Core accepts native envelopes only at
+`datasets/<TechId>/<Domain>/<ObjectKey>/<Dataset>.json`. Raw collector captures
+belong under `evidence/<TechId>/<ObjectKey>/`. Legacy wrappers, collector
+staging directories, unresolved placeholders, and raw evidence under
+`datasets/` fail validation.
 
 ## 6) Machine-readable onboarding plan
 For zero-context agent onboarding and implementation planning, see:

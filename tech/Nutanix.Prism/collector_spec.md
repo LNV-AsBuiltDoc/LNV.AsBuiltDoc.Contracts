@@ -86,7 +86,7 @@ files.
 Raw evidence is written separately under:
 
 ```text
-datasets/raw/<targetKey>/<apiFamily>/<dataset>.raw.json
+evidence/Nutanix.Prism/<targetKey>/<apiFamily>/<dataset>.raw.json
 ```
 
 Raw evidence is redacted before write and is not a contract dataset.

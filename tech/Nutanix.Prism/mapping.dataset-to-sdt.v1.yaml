@@ -1,7 +1,7 @@
 schema: mapping.dataset-to-sdt
-schemaVersion: 1
+schemaVersion: 2
 techId: Nutanix.Prism
-displayName: Nutanix Prism dataset-to-SDT mapping v1
+displayName: Nutanix Prism logical dataset-to-SDT mapping v2
 compatibility:
   contracts:
     version: 2.0.0
@@ -10,77 +10,23 @@ strictContracts:
   enabled: true
   requireAllMappings: false
   forbidUnmappedDatasets: false
-  requireSelectors: false
+  requireSelectors: true
 mappings:
-  - dataset: cluster
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Summary
-    required: true
-    notes: Cluster summary from Prism Element or Prism Central.
-  - dataset: hosts
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.Hosts
-    required: false
-    notes: Prism Element host inventory.
-  - dataset: host_nics
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.HostNics
-    required: false
-    notes: Prism Central host NIC inventory.
-  - dataset: cvms
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.CVMs
-    required: false
-    notes: Controller VM inventory derived from Prism Element VM payloads.
-  - dataset: vms
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.VMs
-    required: true
-    notes: Workload VM inventory from Prism Element or Prism Central.
-  - dataset: networks
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.Networks
-    required: true
-    notes: Network/subnet inventory from Prism Element or Prism Central.
-  - dataset: virtual_switches
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.VirtualSwitches
-    required: false
-    notes: Prism Central virtual switch inventory.
-  - dataset: storage_containers
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.StorageContainers
-    required: false
-    notes: Prism Element storage container inventory.
-  - dataset: storage_pools
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.StoragePools
-    required: false
-    notes: Prism Element storage pool inventory.
-  - dataset: disks
-    sdtTag: LNV.Nutanix.Prism.Cluster[<ClusterKey>].Tables.Disks
-    required: false
-    notes: Prism Element disk inventory.
-  - dataset: categories
-    sdtTag: LNV.Nutanix.Prism.Global.Tables.Categories
-    required: false
-    notes: Prism Central category inventory.
-  - dataset: policies
-    sdtTag: LNV.Nutanix.Prism.Global.Tables.Policies
-    required: false
-    notes: Prism Central policy inventory.
-  - dataset: templates
-    sdtTag: LNV.Nutanix.Prism.Global.Tables.Templates
-    required: false
-    notes: Prism Central VM template inventory.
-  - dataset: ssl_certificates
-    sdtTag: LNV.Nutanix.Prism.Global.Tables.SslCertificates
-    required: false
-    notes: Prism Central cluster SSL certificate metadata.
-  - dataset: alerts
-    sdtTag: LNV.Nutanix.Prism.Global.Tables.Alerts
-    required: false
-    notes: Prism Central alert inventory.
-  - dataset: tasks
-    sdtTag: LNV.Nutanix.Prism.Global.Tables.Tasks
-    required: false
-    notes: Prism Central task inventory.
-  - dataset: collection_sources
-    sdtTag: LNV.Nutanix.Prism.Collection.Tables.Sources
-    required: false
-    notes: Collection source and API fallback metadata.
-  - dataset: relationships
-    sdtTag: LNV.Nutanix.Prism.Relationships.Tables.Relationships
-    required: false
-    notes: Target and target-group correlation relationships.
+  - { dataset: cluster, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Summary", required: true, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Summary" } }
+  - { dataset: hosts, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Hosts", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Hosts" } }
+  - { dataset: host_nics, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.HostNics", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.HostNics" } }
+  - { dataset: cvms, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.CVMs", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.CVMs" } }
+  - { dataset: vms, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.VMs", required: true, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.VMs" } }
+  - { dataset: vm_nics, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.VMNics", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.VMNics" } }
+  - { dataset: networks, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Networks", required: true, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Networks" } }
+  - { dataset: virtual_switches, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.VirtualSwitches", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.VirtualSwitches" } }
+  - { dataset: storage_containers, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.StorageContainers", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.StorageContainers" } }
+  - { dataset: storage_pools, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.StoragePools", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.StoragePools" } }
+  - { dataset: disks, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Disks", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Disks" } }
+  - { dataset: protection_domains, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.ProtectionDomains", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.ProtectionDomains" } }
+  - { dataset: alerts, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Alerts", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Alerts" } }
+  - { dataset: tasks, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Tasks", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Tasks" } }
+  - { dataset: templates, scope: target, domain: cluster, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Templates", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Templates" } }
+  - { dataset: collection_sources, scope: target, domain: core, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.CollectionSources", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.CollectionSources" } }
+  - { dataset: relationships, scope: target, domain: core, sdtTag: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Relationships", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Target[TargetKey].Tables.Relationships" } }
+  - { dataset: relationships, scope: targetGroup, domain: group, sdtTag: "LNV.Nutanix.Prism.Group[GroupKey].Tables.Relationships", required: false, selectors: [items], renderHint: { renderAs: table, renderMode: table, projectionRef: "LNV.Nutanix.Prism.Group[GroupKey].Tables.Relationships" } }

@@ -3,7 +3,73 @@
   "$id": "https://lnv.asbuiltdoc/contracts/tech/NetApp.ONTAP/dataset/aggregates.schema.json",
   "title": "NetApp.ONTAP aggregates Dataset",
   "type": "object",
-  "required": ["schema_version", "collector", "source", "dataset", "item_count", "items"],
-  "properties": { "schema_version": { "const": "lnv.collector.dataset.v1" }, "collector": { "type": "object" }, "source": { "type": "object" }, "dataset": { "const": "aggregates" }, "item_count": { "type": "integer", "minimum": 0 }, "items": { "type": "array", "items": { "type": "object", "properties": { "collectedFrom": { "const": "aggregates" } }, "additionalProperties": true } } },
+  "required": [
+    "schema_version",
+    "collector",
+    "source",
+    "dataset",
+    "item_count",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lnv.collector.dataset.v1"
+    },
+    "collector": {
+      "type": "object",
+      "required": [
+        "tech_id",
+        "module",
+        "entry_point"
+      ],
+      "properties": {
+        "tech_id": {
+          "const": "NetApp.ONTAP"
+        },
+        "module": {
+          "const": "LNV.AsBuiltDoc.NetApp.ONTAP"
+        },
+        "entry_point": {
+          "const": "Invoke-LnvAsBuiltDoc.NetApp.ONTAP"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "target_key",
+        "file"
+      ],
+      "properties": {
+        "target_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file": {
+          "type": "string",
+          "pattern": "^datasets/NetApp\\.ONTAP/[^/]+/[^/]+/[^/]+\\.json$"
+        }
+      }
+    },
+    "dataset": {
+      "const": "aggregates"
+    },
+    "item_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "collectedFrom": {
+            "const": "aggregates"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
   "additionalProperties": true
 }

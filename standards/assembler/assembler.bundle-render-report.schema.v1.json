@@ -52,6 +52,12 @@
     "outputRoot": {
       "type": "string"
     },
+    "compositionMapPath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "filters": {
       "type": "object",
       "additionalProperties": false,
