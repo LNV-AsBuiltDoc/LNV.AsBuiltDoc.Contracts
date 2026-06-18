@@ -34,7 +34,7 @@ jobs:
           python .knowledgeCI/collect_contract_state.py \
             --repo-root . \
             --role contract-authority \
-            --schema .knowledgeCI/contract-state.schema.v1.json \
+            --schema .knowledgeCI/contract-state.schema.v2.json \
             --output contract-state.json
 
       - name: Upload contract state

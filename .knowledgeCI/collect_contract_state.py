@@ -185,14 +185,22 @@ def main() -> int:
     standards = evidence(root, standard_patterns)
     tech_manifests = evidence(root, tech_patterns)
     contract_exports = evidence(root, export_patterns)
-    schema_ids: set[str] = set()
-    for item in standards + contract_exports:
+    consumed_schema_ids: set[str] = set()
+    contribution_schema_ids: set[str] = set()
+    for item in standards:
         if item["path"].endswith(".json"):
             payload = read_json(root / item["path"])
             if payload:
                 identifier = payload.get("$id") or payload.get("schema_version") or payload.get("schemaVersion")
                 if identifier is not None:
-                    schema_ids.add(str(identifier))
+                    consumed_schema_ids.add(str(identifier))
+    for item in contract_exports:
+        if item["path"].endswith(".json"):
+            payload = read_json(root / item["path"])
+            if payload:
+                identifier = payload.get("$id") or payload.get("schema_version") or payload.get("schemaVersion")
+                if identifier is not None:
+                    contribution_schema_ids.add(str(identifier))
 
     warnings: list[str] = []
     errors: list[str] = []
@@ -213,7 +221,7 @@ def main() -> int:
         {str(value) for value in (config.get("technology_ids") or []) if str(value).strip()}
     )
     document = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "generatedAtUtc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "repository": {
             "owner": owner,
@@ -236,24 +244,26 @@ def main() -> int:
             "versionSource": contracts_source,
             "supportedRange": config.get("supported_contracts_range"),
             "snapshot": snapshot,
-            "schemaIdentifiers": sorted(schema_ids),
+            "schemaIdentifiers": sorted(consumed_schema_ids | contribution_schema_ids),
         },
-        "artifacts": {
-            "standards": standards,
-            "techManifests": tech_manifests,
-            "contractExports": contract_exports,
-        },
-        "validation": {
-            "requiredChecks": required_checks,
-            "strictContractsCapable": bool(config.get("strict_contracts_capable", False)),
+        "evidence": {
+            "consumedContracts": {
+                "standards": standards,
+                "techManifests": tech_manifests,
+                "schemas": sorted(consumed_schema_ids),
+            },
+            "outgoingContributions": {
+                "contractExports": contract_exports,
+                "schemas": sorted(contribution_schema_ids),
+            },
+            "validation": {
+                "requiredChecks": required_checks,
+                "strictContractsCapable": bool(config.get("strict_contracts_capable", False)),
+            },
         },
         "diagnostics": {
             "warnings": warnings,
             "errors": errors,
-            "evidence": sorted(
-                {item["path"] for item in standards + tech_manifests + contract_exports}
-                | ({snapshot["path"]} if snapshot else set())
-            ),
         },
     }
     validate(document, Path(args.schema).resolve())
