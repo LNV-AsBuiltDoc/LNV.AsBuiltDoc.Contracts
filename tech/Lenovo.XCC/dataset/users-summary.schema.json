@@ -23,6 +23,24 @@
       "items": {
         "additionalProperties": true,
         "properties": {
+          "accountId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "accountName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "accountTypes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "collectedUtc": {
             "format": "date-time",
             "type": "string"
@@ -53,9 +71,27 @@
               "null"
             ]
           },
+          "displayName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
           "health": {
             "type": [
               "string",
+              "null"
+            ]
+          },
+          "hostBootstrapAccount": {
+            "type": [
+              "boolean",
               "null"
             ]
           },
@@ -65,9 +101,9 @@
               "null"
             ]
           },
-          "lowerThresholdCritical": {
+          "locked": {
             "type": [
-              "number",
+              "boolean",
               "null"
             ]
           },
@@ -89,32 +125,55 @@
               "null"
             ]
           },
-          "physicalContext": {
+          "position": {
             "type": [
               "string",
               "null"
             ]
           },
-          "reading": {
-            "type": [
-              "number",
-              "string",
-              "null"
-            ]
-          },
-          "readingUnits": {
+          "rack": {
             "type": [
               "string",
               "null"
             ]
           },
-          "sensorNumber": {
+          "role": {
             "type": [
-              "number",
+              "string",
+              "null"
+            ]
+          },
+          "roleId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "row": {
+            "type": [
+              "string",
               "null"
             ]
           },
           "serialNumber": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "serverIdentity": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "site": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "siteSort": {
             "type": [
               "string",
               "null"
@@ -153,12 +212,6 @@
           "targetKey": {
             "minLength": 1,
             "type": "string"
-          },
-          "upperThresholdCritical": {
-            "type": [
-              "number",
-              "null"
-            ]
           },
           "xccAddress": {
             "type": [
