@@ -1,0 +1,116 @@
+{
+  "schema": "assembler.diagrams",
+  "schemaVersion": 1,
+  "techId": "Nutanix.Prism",
+  "displayName": "Nutanix Prism assembler diagram definitions",
+  "diagrams": {
+    "LNV.Nutanix.Prism.Group[GroupKey].Diagrams.LandscapeMap": {
+      "engine": "diagrammer.core",
+      "kind": "topology",
+      "inputs": {
+        "landscape": {
+          "dataset": "__current__",
+          "root": "items",
+          "required": true
+        }
+      },
+      "layout": {
+        "direction": "left-to-right",
+        "title": "Prism Landscape Map",
+        "style": "node-link"
+      },
+      "assets": {
+        "theme": {
+          "siteFill": "#E8F1FF",
+          "landscapeFill": "#F2F6FF",
+          "clusterFill": "#EAF7EA",
+          "prismCentralFill": "#FFF4E5",
+          "prismElementFill": "#F8EFFF"
+        },
+        "icons": {
+          "site": "site",
+          "landscape": "layers",
+          "cluster": "cluster",
+          "prismCentral": "management-plane",
+          "prismElement": "cluster-endpoint"
+        }
+      },
+      "nodes": [
+        {
+          "name": "sites",
+          "input": "landscape",
+          "id": "{siteId}",
+          "label": "{siteLabel}",
+          "shape": "rectangle",
+          "fillColor": "#E8F1FF"
+        },
+        {
+          "name": "landscapes",
+          "input": "landscape",
+          "id": "{landscapeId}",
+          "label": "{landscapeLabel}",
+          "shape": "rectangle",
+          "fillColor": "#F2F6FF"
+        },
+        {
+          "name": "clusters",
+          "input": "landscape",
+          "id": "{clusterId}",
+          "label": "{clusterLabel}",
+          "shape": "rectangle",
+          "fillColor": "#EAF7EA",
+          "fields": [
+            { "label": "Hosts", "field": "hostCount" },
+            { "label": "VMs", "field": "vmCount" }
+          ]
+        },
+        {
+          "name": "prismCentral",
+          "input": "landscape",
+          "id": "{prismCentralId}",
+          "label": "{prismCentralLabel}",
+          "shape": "rectangle",
+          "fillColor": "#FFF4E5"
+        },
+        {
+          "name": "prismElement",
+          "input": "landscape",
+          "id": "{prismElementId}",
+          "label": "{prismElementLabel}",
+          "shape": "rectangle",
+          "fillColor": "#F8EFFF"
+        }
+      ],
+      "edges": [
+        {
+          "input": "landscape",
+          "from": "{siteId}",
+          "to": "{landscapeId}",
+          "label": "contains"
+        },
+        {
+          "input": "landscape",
+          "from": "{landscapeId}",
+          "to": "{clusterId}",
+          "label": "contains"
+        },
+        {
+          "input": "landscape",
+          "from": "{clusterId}",
+          "to": "{prismCentralId}",
+          "label": "managed by"
+        },
+        {
+          "input": "landscape",
+          "from": "{clusterId}",
+          "to": "{prismElementId}",
+          "label": "collected from"
+        }
+      ],
+      "fallback": {
+        "mode": "fail",
+        "message": "Prism landscape map diagram could not be generated."
+      }
+    }
+  }
+}

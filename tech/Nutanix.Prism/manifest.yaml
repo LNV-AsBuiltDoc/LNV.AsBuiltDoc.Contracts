@@ -13,6 +13,7 @@ spec:
   datasetSchemaPath: dataset
   datasetToSdtMapping: mapping.dataset-to-sdt.v1.yaml
   assemblerProjections: assembler.projections.v1.json
+  assemblerDiagrams: assembler.diagrams.v1.json
   contributionModel: canonical-composition
   apiSupport:
     stable: v2
@@ -99,3 +100,6 @@ spec:
     - estate_management_topology
     - estate_endpoint_inventory
     - estate_collection_scope
+    - estate_landscape_map
+    - estate_landscape_diagram
+    - authentication_access
