@@ -80,6 +80,7 @@ The current renderer does **not** yet fully execute:
 - `render-empty`: emit the target render unit even when the selector yields zero rows. For tables/lists this means headers with zero body rows; for scalar/object-like outputs this means an empty value.
 - `omit`: do not emit the render unit when the selector yields zero rows.
 - `placeholder`: emit the render unit with profile-defined placeholder content.
+- `message`: replace the render unit with the projection's `emptyPlaceholder` text. This is intended for customer-facing sections where an empty table would add noise.
 - `error`: treat a zero-row result as a transformation error.
 - If `emptyBehavior` is omitted, the default is `render-empty`.
 
@@ -105,7 +106,7 @@ The current renderer does **not** yet fully execute:
 ## Projection result normalization
 ### Selector resolves to zero rows
 - Apply `emptyBehavior` exactly as declared.
-- For `renderAs=table` or `renderAs=list`, zero rows is still a valid result unless `emptyBehavior=error`.
+- For `renderAs=table` or `renderAs=list`, zero rows is still a valid result unless `emptyBehavior=error`. `emptyBehavior=message` emits the declared `emptyPlaceholder` instead of an empty table.
 - For `renderAs=scalar`, zero rows yields an empty scalar, omission, placeholder, or error according to `emptyBehavior`.
 
 ### Selector resolves to one object

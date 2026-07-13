@@ -382,6 +382,7 @@
             "render-empty",
             "omit",
             "placeholder",
+            "message",
             "error"
           ]
         },
