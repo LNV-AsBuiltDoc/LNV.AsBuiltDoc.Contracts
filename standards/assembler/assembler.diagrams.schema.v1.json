@@ -98,7 +98,8 @@
           "enum": [
             "node-link",
             "group-summary",
-            "dense-controller-rows"
+            "dense-controller-rows",
+            "vertical-topology"
           ]
         },
         "size": {
