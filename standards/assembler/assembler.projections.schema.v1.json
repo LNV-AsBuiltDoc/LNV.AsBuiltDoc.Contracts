@@ -319,6 +319,57 @@
         }
       }
     },
+    "groupPresentationLine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "label"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "omitWhenEmpty": {
+          "type": "boolean"
+        }
+      }
+    },
+    "groupPresentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "splitBy"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "inline",
+            "separate-tables"
+          ]
+        },
+        "splitBy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/groupPresentationLine"
+          }
+        },
+        "suppressContextWhenSingleGroup": {
+          "type": "boolean"
+        }
+      }
+    },
     "projectionDefinition": {
       "type": "object",
       "additionalProperties": false,
@@ -342,6 +393,9 @@
         },
         "tableLayout": {
           "$ref": "#/$defs/tableLayout"
+        },
+        "groupPresentation": {
+          "$ref": "#/$defs/groupPresentation"
         },
         "renderMode": {
           "type": "string",

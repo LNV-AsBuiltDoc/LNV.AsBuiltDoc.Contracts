@@ -39,6 +39,7 @@ The current renderer executes this subset:
 - projection `filter`
 - legacy `sortBy`
 - projection `columns`
+- projection `groupPresentation` for document tables split into repeated tables with context paragraphs
 - column formats `bytesHuman` and `join`
 - partial table empty handling through `emptyBehavior=placeholder`
 
@@ -63,6 +64,19 @@ The current renderer does **not** yet fully execute:
 4. Build projection rows/values for target SDT
 5. Apply grouping and ordering
 6. Emit render units
+
+### Per-group document tables
+
+Customer-facing infrastructure projections can declare `groupPresentation` with
+`mode: separate-tables`. The renderer splits rows by `splitBy`, emits the
+declared `context` lines as normal paragraphs above each table, and repeats the
+table header for every group. Context is deliberately outside the table so site,
+landscape, and cluster identifiers do not consume data-table columns.
+
+Set `suppressContextWhenSingleGroup: true` for a single-cluster or single-site
+document where the same location appears in cover and introductory metadata.
+Use `context` entries in reader order, for example `Site`, `Landscape`, then
+`Cluster`.
 
 ## Selector semantics
 - Selectors are applied in listed order (left-to-right).
